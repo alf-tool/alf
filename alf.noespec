@@ -1,0 +1,27 @@
+template-info:
+  name: "rubygem.noe"
+  version: 1.7.6
+variables:
+  lower:
+    alf
+  upper:
+    Alf
+  version:
+    0.13.0
+  summary: |-
+    Relational Algebra at your fingertips
+  description: |-
+    Alf brings a beautiful yet powerful relational algebra to the Shell and to Ruby.
+  authors:
+    - {name: Bernard Lambeau, email: blambeau@gmail.com}
+  links:
+    - http://blambeau.github.com/alf
+    - http://github.com/alf-tool/alf
+    - http://rubygems.org/gems/alf
+    - http://rubydoc.info/gems/alf
+  dependencies:
+    - {name: alf-core,   version: "~> 0.13.0", groups: [runtime]}
+    - {name: alf-sequel, version: "~> 0.13.0", groups: [runtime]}
+    - {name: alf-rest,   version: "~> 0.13.0", groups: [runtime]}
+    - {name: rake,       version: "~> 0.9.2",  groups: [test, release]}
+    - {name: rspec,      version: "~> 2.10",   groups: [test, release]}
