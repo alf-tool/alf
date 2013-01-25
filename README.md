@@ -8,7 +8,7 @@ Relational Algebra at your fingertips
 ## Links
 
 * [Official documentation](http://blambeau.github.com/alf)
-* [Source and Issues](http://github.com/blambeau/alf)
+* [Source and Issues](http://github.com/alf-tool/alf)
 * [Relational basics as needed](http://www.revision-zero.org/relational-basics-2)
 
 ## What & Why
