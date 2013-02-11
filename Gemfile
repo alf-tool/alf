@@ -20,7 +20,7 @@ group :test do
   gem "rspec", "~> 2.12"
   gem "sqlite3", "~> 1.3",      :platforms => ['mri', 'rbx']
   gem "jdbc-sqlite3", "~> 3.7", :platforms => ['jruby']
-  gem "pg", "~> 0.14"
+  gem "pg", "~> 0.14",          :platforms => ['mri', 'rbx']
 end
 
 group :release do
