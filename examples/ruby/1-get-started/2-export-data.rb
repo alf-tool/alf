@@ -40,4 +40,16 @@ Alf.connect(suppliers_and_parts_connspec) do |conn|
   # The IO object is returned by the to_xxx method:
   assert buffer.object_id == STDOUT.object_id
 
+  ##
+  # Outputting in a specific order
+  #
+  # As relations are not ordered, no algebra operator allows obtaining an "ordered
+  # relation". However, to_xxx methods all allow specifying such an order at output time:
+  buffer = all_suppliers.to_csv(order: [[:city, :desc], [:sid, :asc]])
+  #
+  assert_equal [2, 3, 1, 4, 5], buffer.scan(/^S(\d)/m).map(&:first).map(&:to_i)
+
+  # You can of course mix an order and an output IO
+  assert_equal STDOUT, all_suppliers.to_csv(STDOUT, order: [[:city, :desc], [:sid, :asc]])
+
 end
