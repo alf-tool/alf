@@ -1,0 +1,4 @@
+{:city => 'London',   :country => 'England'}
+{:city => 'Paris',    :country => 'France'}
+{:city => 'Athens',   :country => 'Greece'}
+{:city => 'Brussels', :country => 'Belgium'} 
