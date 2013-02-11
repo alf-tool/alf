@@ -1,7 +1,8 @@
 require 'commons'
 
 ##
-# This example shows how to connect to a database and send some queries.
+# This example shows how to connect to a database and send some queries through
+# `Àlf::Database::Connection#query`.
 #
 Alf.connect(suppliers_and_parts_connspec) do |conn|
 
