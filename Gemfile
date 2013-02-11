@@ -18,6 +18,9 @@ end
 group :test do
   gem "rake", "~> 10.0"
   gem "rspec", "~> 2.12"
+  gem "sqlite3", "~> 1.3",      :platforms => ['mri', 'rbx']
+  gem "jdbc-sqlite3", "~> 3.7", :platforms => ['jruby']
+  gem "pg", "~> 0.14"
 end
 
 group :release do
