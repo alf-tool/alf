@@ -7,6 +7,16 @@ module Alf::IntegrationTestHelpers
     Path.backfind("fixtures")
   end
 
+  class Victim
+
+    def conn_spec
+      ENV['ALF_VICTIM_CONN_SPEC'] || "#{Alf::Sequel::Adapter.sqlite_protocol}:memory"
+    end
+  end
+
+  def victim
+    @victim ||= Victim.new
+  end
 end
 
 RSpec.configure do |c|

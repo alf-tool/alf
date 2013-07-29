@@ -2,7 +2,7 @@ require 'test_helpers'
 describe "Migrations with a Sequel adapter" do
 
   let(:db){
-    Alf.database("#{Alf::Sequel::Adapter.sqlite_protocol}:memory", opts)
+    Alf.database(victim.conn_spec, opts)
   }
 
   context 'when no migration folder is set' do
