@@ -31,6 +31,6 @@ variables:
   dependencies:
     - {name: alf-core,   version: "~> 0.13.0", groups: [runtime]}
     - {name: alf-sequel, version: "~> 0.13.0", groups: [runtime]}
-    - {name: alf-shell,  version: "~> 0.13.0", groups: [runtime]}
+    - {name: alf-shell,  version: "~> 0.13.1", groups: [runtime]}
     - {name: rake,       version: "~> 10.1",   groups: [test, release]}
     - {name: rspec,      version: "~> 2.14",   groups: [test, release]}

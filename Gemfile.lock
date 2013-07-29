@@ -9,7 +9,7 @@ GEM
     alf-sequel (0.13.0)
       alf-core (~> 0.13.0)
       sequel (~> 3.48)
-    alf-shell (0.13.0)
+    alf-shell (0.13.1)
       alf-core (~> 0.13.0)
       quickl (~> 0.4.3)
     diff-lcs (1.2.4)
@@ -38,7 +38,7 @@ PLATFORMS
 DEPENDENCIES
   alf-core (~> 0.13.0)
   alf-sequel (~> 0.13.0)
-  alf-shell (~> 0.13.0)
+  alf-shell (~> 0.13.1)
   jdbc-sqlite3 (~> 3.7)
   pg (~> 0.14)
   rake (~> 10.1)

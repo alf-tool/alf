@@ -127,7 +127,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rspec", "~> 2.14")
   s.add_dependency("alf-core", "~> 0.13.0")
   s.add_dependency("alf-sequel", "~> 0.13.0")
-  s.add_dependency("alf-shell", "~> 0.13.0")
+  s.add_dependency("alf-shell", "~> 0.13.1")
 
   # The version of ruby required by this gem
   #

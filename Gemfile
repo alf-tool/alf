@@ -9,7 +9,7 @@ group :runtime do
   # gem "alf-shell",  git: "git://github.com/alf-tool/alf-shell.git"
   gem "alf-core", "~> 0.13.0"
   gem "alf-sequel", "~> 0.13.0"
-  gem "alf-shell", "~> 0.13.0"
+  gem "alf-shell", "~> 0.13.1"
 end
 
 group :test do
