@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/alf-tool/alf-core.git
-  revision: 115f88bd3e7c09d35e93e2e22e0931e9bf10f139
+  revision: 1bfd32b8c75cee66b8af511934b566c766030a06
   specs:
     alf-core (0.13.0)
       domain (~> 1.0)
@@ -10,23 +10,24 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-rest.git
-  revision: 449d70a4d0c20600d7fb29f6ce4ca9c7d5296e7d
+  revision: 5a73bc2338cb75d43bcc0e613aba456aa73ac4fa
   specs:
     alf-rest (0.1.0)
       alf-core (~> 0.13.0)
+      rack-accept (~> 0.4.5)
       sinatra (~> 1.3)
 
 GIT
   remote: git://github.com/alf-tool/alf-sequel.git
-  revision: 9d25964980b83973475698c5b443005d99ea158d
+  revision: 534082e2eee32c1ead41a93f16af758d1bd745da
   specs:
     alf-sequel (0.13.0)
       alf-core (~> 0.13.0)
-      sequel (~> 3.36)
+      sequel (~> 3.48)
 
 GIT
   remote: git://github.com/alf-tool/alf-shell.git
-  revision: 2c18b6ba96437253bfa08d54b0b30f2ec37c9d41
+  revision: 7ba8163186aa10ad6514e21d4c6b8026a2cc7903
   specs:
     alf-shell (0.13.0)
       alf-core (~> 0.13.0)
@@ -43,7 +44,9 @@ GEM
     pg (0.14.1)
     quickl (0.4.3)
     rack (1.5.2)
-    rack-protection (1.3.2)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-protection (1.5.0)
       rack
     rake (10.0.3)
     rspec (2.12.0)
@@ -54,14 +57,14 @@ GEM
     rspec-expectations (2.12.1)
       diff-lcs (~> 1.1.3)
     rspec-mocks (2.12.2)
-    sequel (3.44.0)
+    sequel (3.48.0)
     sexpr (0.5.1)
-    sinatra (1.3.4)
+    sinatra (1.4.3)
       rack (~> 1.4)
-      rack-protection (~> 1.3)
-      tilt (~> 1.3, >= 1.3.3)
+      rack-protection (~> 1.4)
+      tilt (~> 1.3, >= 1.3.4)
     sqlite3 (1.3.7)
-    tilt (1.3.3)
+    tilt (1.4.1)
 
 PLATFORMS
   ruby
