@@ -1,6 +1,15 @@
 template-info:
   name: "rubygem.noe"
   version: 1.7.6
+  manifest:
+    Gemfile:
+      safe-override: false
+    tasks/spec_test.rake:
+      ignore: true
+    spec/spec_helper:
+      ignore: true
+    spec/test_alf:
+      ignore: true
 variables:
   lower:
     alf
@@ -23,6 +32,5 @@ variables:
     - {name: alf-core,   version: "~> 0.13.0", groups: [runtime]}
     - {name: alf-sequel, version: "~> 0.13.0", groups: [runtime]}
     - {name: alf-shell,  version: "~> 0.13.0", groups: [runtime]}
-    - {name: alf-rest,   version: "~> 0.13.0", groups: [runtime]}
-    - {name: rake,       version: "~> 10.0",   groups: [test, release]}
-    - {name: rspec,      version: "~> 2.12",   groups: [test, release]}
+    - {name: rake,       version: "~> 10.1",   groups: [test, release]}
+    - {name: rspec,      version: "~> 2.14",   groups: [test, release]}
