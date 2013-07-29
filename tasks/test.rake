@@ -1,6 +1,6 @@
-require 'rake/testtask'
-Rake::TestTask.new do |t|
-  t.libs << "test" << "examples" << "lib"
-  t.test_files = FileList['test/test*.rb']
-  t.verbose = true
+require "rspec/core/rake_task"
+desc "Run rspec integration tests"
+RSpec::Core::RakeTask.new(:test) do |t|
+  t.pattern = "test/**/test_*.rb"
+  t.rspec_opts = ["--color", "--backtrace", "-Ilib", "-Itest"]
 end
