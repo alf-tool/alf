@@ -1,0 +1,2 @@
+{ id: "blambeau", name: "Bernard Lambeau", lang: "fr", age_group: "adult" }
+{ id: "mdelsol",  name: "Maria Delsol",    lang: "en", age_group: "child" }

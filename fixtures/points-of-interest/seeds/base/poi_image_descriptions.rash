@@ -1,0 +1,24 @@
+{ id: "brussels-1",  lang: "fr", age_group: "adult", description: "On voit ici la ville de Bruxelles, ..." }
+{ id: "brussels-1",  lang: "en", age_group: "adult", description: "You can see Brussels here, ..." }
+{ id: "brussels-1",  lang: "fr", age_group: "child", description: "Tu peux voir ici la ville de Bruxelles, ..." }
+{ id: "brussels-1",  lang: "en", age_group: "child", description: "You can see Brussels here, ..." }
+{ id: "manneken-1",  lang: "fr", age_group: "adult", description: "On voit ici le fameux Manneken Pis, ..." }
+{ id: "manneken-1",  lang: "en", age_group: "adult", description: "Here the famous Manneken Pis, ..." }
+{ id: "manneken-1",  lang: "fr", age_group: "child", description: "Le monsieur qui fait pipi s'appelle Manneken Pis, ..." }
+{ id: "manneken-1",  lang: "en", age_group: "child", description: "That man is called Manneken Pis, ..." }
+{ id: "paris-1",     lang: "fr", age_group: "adult", description: "On voit ici la ville de Paris, ..." }
+{ id: "paris-1",     lang: "en", age_group: "adult", description: "You can see Paris here, ..." }
+{ id: "paris-1",     lang: "fr", age_group: "child", description: "Tu peux voir ici la ville de Paris, ..." }
+{ id: "paris-1",     lang: "en", age_group: "child", description: "You can see Paris here, ..." }
+{ id: "delirium-1",  lang: "fr", age_group: "adult", description: "Le fameux Delirium Cafe, ..." }
+{ id: "delirium-1",  lang: "en", age_group: "adult", description: "The well-known Delirium Cafe, ..." }
+{ id: "delirium-1",  lang: "fr", age_group: "child", description: "Un cafe pour adultes, ..." }
+{ id: "delirium-1",  lang: "en", age_group: "child", description: "A bar for adults, ..." }
+{ id: "kites-1",     lang: "fr", age_group: "adult", description: "On voit ici le magasin de cerf-volants, ..." }
+{ id: "kites-1",     lang: "en", age_group: "adult", description: "We can see the kites shop here, ..." }
+{ id: "kites-1",     lang: "fr", age_group: "child", description: "Tu peux voir ici le magasin de cerf-volants, ..." }
+{ id: "kites-1",     lang: "en", age_group: "child", description: "You can see the kites shop here, ..." }
+{ id: "chocolate-1", lang: "en", age_group: "adult", description: "A good chocolate shop is there!"}
+{ id: "chocolate-1", lang: "fr", age_group: "adult", description: "Un excellent magasin de chocolat ici!"}
+{ id: "chocolate-1", lang: "en", age_group: "child", description: "My preferred chocolate shop is there!"}
+{ id: "chocolate-1", lang: "fr", age_group: "child", description: "Mon magasin de chocolat prefere!"}

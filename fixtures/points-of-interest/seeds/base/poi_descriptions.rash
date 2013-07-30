@@ -1,0 +1,24 @@
+{ id: "brussels",  lang: "fr", age_group: "adult", description: "Bruxelles" }
+{ id: "brussels",  lang: "en", age_group: "adult", description: "Brussels city" }
+{ id: "brussels",  lang: "fr", age_group: "child", description: "La ville de Bruxelles" }
+{ id: "brussels",  lang: "en", age_group: "child", description: "Brussels (the city)" }
+{ id: "manneken",  lang: "fr", age_group: "adult", description: "Manneken Pis" }
+{ id: "manneken",  lang: "en", age_group: "adult", description: "Manneken Pis" }
+{ id: "manneken",  lang: "fr", age_group: "child", description: "Manneken Pis" }
+{ id: "manneken",  lang: "en", age_group: "child", description: "Manneken Pis" }
+{ id: "delirium",  lang: "fr", age_group: "adult", description: "Le Delirium Cafe" }
+{ id: "delirium",  lang: "en", age_group: "adult", description: "The Delirium Cafe" }
+{ id: "delirium",  lang: "fr", age_group: "child", description: "Le Delirium Cafe (hidden)" }
+{ id: "delirium",  lang: "en", age_group: "child", description: "The Delirium Cafe (hidden)" }
+{ id: "kites",     lang: "fr", age_group: "adult", description: "Magasin de cerf-volants" }
+{ id: "kites",     lang: "en", age_group: "adult", description: "Kites shop" }
+{ id: "kites",     lang: "fr", age_group: "child", description: "Magasin de cerf-volants" }
+{ id: "kites",     lang: "en", age_group: "child", description: "Kites shop" }
+{ id: "paris",     lang: "fr", age_group: "adult", description: "Paris" }
+{ id: "paris",     lang: "en", age_group: "adult", description: "Paris" }
+{ id: "paris",     lang: "fr", age_group: "child", description: "La ville de Paris" }
+{ id: "paris",     lang: "en", age_group: "child", description: "Paris (the city)" }
+{ id: "chocolate", lang: "fr", age_group: "adult", description: "Le magasin de chocolat belge" }
+{ id: "chocolate", lang: "en", age_group: "adult", description: "The Belgian chocolate shop" }
+{ id: "chocolate", lang: "fr", age_group: "child", description: "Le magasin de chocolat" }
+{ id: "chocolate", lang: "en", age_group: "child", description: "Chocolate shop" }

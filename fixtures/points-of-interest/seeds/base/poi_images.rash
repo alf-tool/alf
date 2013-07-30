@@ -1,0 +1,7 @@
+{ id: "brussels-1",  poi: "brussels",  url: "https://upload.wikimedia.org/wikipedia/commons/c/c6/TE-Collage_Brussels.png" }
+{ id: "manneken-1",  poi: "manneken",  url: "http://upload.wikimedia.org/wikipedia/commons/6/64/Bruxelles_Manneken_Pis.jpg" }
+{ id: "paris-1",     poi: "paris",     url: "http://deluxedrivers.com/wp-content/uploads/2013/03/paris-city-lights.jpg" }
+{ id: "delirium-1",  poi: "delirium",  url: "http://upload.wikimedia.org/wikipedia/commons/3/3b/CafeDeliriumEx.JPG" }
+{ id: "kites-1",     poi: "kites",     url: "http://www.billykite.com/images/shop3.jpg" }
+{ id: "chocolate-1", poi: "chocolate", url: "http://i.telegraph.co.uk/multimedia/archive/02339/Belgian-chocolate-_2339760b.jpg" }
+

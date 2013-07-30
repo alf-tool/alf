@@ -1,0 +1,4 @@
+{ id: "manneken",  parent: "brussels" }
+{ id: "delirium",  parent: "brussels" }
+{ id: "kites",     parent: "brussels" }
+{ id: "chocolate", parent: "brussels" }

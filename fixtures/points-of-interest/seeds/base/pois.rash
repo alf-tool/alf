@@ -1,0 +1,6 @@
+{ id: "brussels",  name: "Brussels",       sensible: false }
+{ id: "manneken",  name: "Manneken Pis",   sensible: false }
+{ id: "delirium",  name: "Delirium Cafe",  sensible: true  }
+{ id: "kites",     name: "Kites shop",     sensible: false }
+{ id: "paris",     name: "Paris",          sensible: false }
+{ id: "chocolate", name: "Chocolate shop", sensible: false }
