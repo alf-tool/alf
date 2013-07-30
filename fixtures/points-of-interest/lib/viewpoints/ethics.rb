@@ -2,7 +2,11 @@ module Pois
   #
   # This viewpoint implements the following visibility requirements:
   #
-  # * Sensible POIs shall not be visible if the user is a child
+  # * Sensible POIs shall not be visible if the user is a child.
+  #
+  # This requirement is achieved by restricting `pois` accordingly. The
+  # viewpoint therefore expects to be composed with Native (i.e. pois)
+  # and UserInfo (i.e. `current_user`).
   #
   module Ethics
     include Alf::Viewpoint
@@ -15,5 +19,5 @@ module Pois
         matching(super(), project(adult, [])))
     end
 
-  end
-end
+  end # module Ethics
+end # module Pois

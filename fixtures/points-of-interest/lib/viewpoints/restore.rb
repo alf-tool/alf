@@ -1,7 +1,18 @@
 module Pois
   #
-  # This viewpoint restores all foreign keys given that POIs and user_profiles
-  # have been restricted.
+  # This viewpoint restores foreign keys, supposing that `pois` and
+  # `user_profiles` have been restricted using Privacy/Ethics.
+  #
+  # The following restorations are done:
+  #   * `poi_parents` on visible `pois` for both child and parent
+  #   * `poi_owners`  on visible `pois` and `user_profiles`
+  #   * `poi_images`  on visible `pois`
+  #
+  # The following restorations are not done, because it leads to an infinite
+  # definition cycle when composed with Contextualized:
+  #   * `poi_descriptions`
+  #   * `poi_image_descriptions`
+  # This will be fixed when alf-viewpoint will provide explicit `up` support.
   #
   module Restore
     include Alf::Viewpoint
@@ -44,5 +55,5 @@ module Pois
       proj
     end
 
-  end
-end
+  end # module Restore
+end # module Pois

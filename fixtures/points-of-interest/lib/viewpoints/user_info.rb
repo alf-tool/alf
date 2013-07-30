@@ -1,7 +1,10 @@
 module Pois
   #
-  # This viewpoint is expected to be build through `UserInfo.for(...)`. It
-  # installs a `current_user` expression.
+  # This viewpoint is expected to be build through `UserInfo.for(user_id)`. It
+  # installs a `current_user` expression that filters `user_profiles` using
+  # the id of the current user received as argument.
+  #
+  # The viewpoint is expected to be composed with Native (i.e. `user_profiles`)
   #
   module UserInfo
     include Alf::Viewpoint
@@ -21,5 +24,5 @@ module Pois
       restrict(native.user_profiles, id: user_id)
     end
 
-  end
-end
+  end # module UserInfo
+end # module Pois

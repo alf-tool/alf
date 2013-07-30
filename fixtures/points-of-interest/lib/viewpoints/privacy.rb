@@ -5,6 +5,11 @@ module Pois
   # * User profiles shall not be visible by other users than the current one
   # * Private POIs shall only be visible if owned by the current user
   #
+  # Those requirements are implemented through restrictions of `user_profiles`
+  # and `pois`, respectively. The viewpoint therefore expects to be composed
+  # with Native (i.e. `pois`, `user_profiles`) and UserInfo
+  # (i.e. `current_user`).
+  #
   module Privacy
     include Alf::Viewpoint
 
@@ -23,5 +28,5 @@ module Pois
       union(owned_pois, public_pois)
     end
 
-  end
-end
+  end # module Privacy
+end # module Pois

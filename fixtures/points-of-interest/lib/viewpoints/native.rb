@@ -1,4 +1,8 @@
 module Pois
+  #
+  # This is the Native viewpoint, corresponding to the base schema in the
+  # underlying physical database (e.g. SQL).
+  #
   module Native
     include Alf::Viewpoint
 
@@ -9,5 +13,5 @@ module Pois
     native :poi_descriptions
     native :poi_images
     native :poi_image_descriptions
-  end
-end
+  end # module Native
+end # module Pois
