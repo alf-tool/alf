@@ -6,6 +6,7 @@ require_relative 'viewpoints/contextualized'
 require_relative 'viewpoints/privacy'
 require_relative 'viewpoints/ethics'
 require_relative 'viewpoints/restore'
+require_relative 'viewpoints/viewpoint'
 module Pois
 
   DEFAULT_OPTIONS = {
