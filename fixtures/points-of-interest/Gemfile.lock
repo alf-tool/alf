@@ -9,7 +9,7 @@ PATH
 PATH
   remote: ../../../alf-core
   specs:
-    alf-core (0.13.0)
+    alf-core (0.13.1)
       domain (~> 1.0)
       myrrha (~> 3.0)
       path (~> 1.3)
