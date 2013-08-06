@@ -14,7 +14,7 @@ module Pois
     migrations_folder: Path.dir/"../migrations"
   }
 
-  def self.database(connspec, options)
+  def self.database(connspec, options = {})
     Alf.database(connspec, DEFAULT_OPTIONS.merge(options))
   end
 
