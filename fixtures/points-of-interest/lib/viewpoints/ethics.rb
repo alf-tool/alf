@@ -14,9 +14,9 @@ module Pois
     # Restrict sensible POIs if the current user is a child
     def pois
       adult = restrict(current_user, age_group: "adult")
-      union(
-        restrict(super(), sensible: false),
-        matching(super(), project(adult, [])))
+      union(                                    # both ...
+        restrict(super(), sensible: false),     #   1) non sensible POIs
+        matching(super(), project(adult, [])))  #   2) and all of them if adult
     end
 
   end # module Ethics
