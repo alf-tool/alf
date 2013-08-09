@@ -1,6 +1,6 @@
 require 'test_helper'
-module MobileCity::Viewpoint
-  describe "Full viewpoint", "pois" do
+module MobileCity
+  describe Viewpoint, "pois" do
     include ViewpointHelpers
 
     subject{
@@ -8,7 +8,7 @@ module MobileCity::Viewpoint
     }
 
     context 'when a adult/fr' do
-      let(:viewpoint){ full_viewpoint('blambeau') }
+      let(:viewpoint){ Viewpoint[user_id: 'blambeau'] }
 
       it 'should include owned POIS' do
         kites = subject.restrict(id: "kites").tuple_extract
@@ -31,7 +31,7 @@ module MobileCity::Viewpoint
     end
 
     context 'when a child/en' do
-      let(:viewpoint){ full_viewpoint('mdelsol') }
+      let(:viewpoint){ Viewpoint[user_id: 'mdelsol'] }
 
       it 'should include owned POIS' do
         kites = subject.restrict(id: "chocolate").tuple_extract

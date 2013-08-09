@@ -15,21 +15,22 @@ module MobileCity
     #
     module Contextualized
       include Alf::Viewpoint
+      expects Native, UserInfo
 
       def pois
-        join(super(), project(poi_descriptions, [:id, :description]))
+        join(super, project(poi_descriptions, [:id, :description]))
       end
 
       def poi_descriptions
-        matching(super(), context)
+        matching(super, context)
       end
 
       def poi_images
-        join(super(), project(poi_image_descriptions, [:id, :description]))
+        join(super, project(poi_image_descriptions, [:id, :description]))
       end
 
       def poi_image_descriptions
-        matching(super(), context)
+        matching(super, context)
       end
 
     protected

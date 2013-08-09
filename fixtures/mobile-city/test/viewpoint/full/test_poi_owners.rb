@@ -1,9 +1,9 @@
 require 'test_helper'
-module MobileCity::Viewpoint
-  describe Privacy, "poi_owners" do
+module MobileCity
+  describe Viewpoint, "poi_owners" do
     include ViewpointHelpers
 
-    let(:viewpoint){ full_viewpoint('blambeau') }
+    let(:viewpoint){ Viewpoint[user_id: 'blambeau'] }
 
     subject{
       query{ poi_owners }

@@ -1,9 +1,9 @@
 require 'test_helper'
-module MobileCity::Viewpoint
-  describe "Fully composed viewpoint", "user_profiles" do
+module MobileCity
+  describe Viewpoint, "user_profiles" do
     include ViewpointHelpers
 
-    let(:viewpoint){ full_viewpoint('blambeau') }
+    let(:viewpoint){ Viewpoint[user_id: 'blambeau'] }
 
     subject{
       query{ user_profiles }

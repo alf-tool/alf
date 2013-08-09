@@ -3,7 +3,7 @@ module MobileCity::Viewpoint
   describe Contextualized, "pois" do
     include ViewpointHelpers
 
-    let(:viewpoint){ build_viewpoint(Contextualized, 'blambeau') }
+    let(:viewpoint){ Contextualized[user_id: 'blambeau'] }
 
     subject{
       query{ pois }

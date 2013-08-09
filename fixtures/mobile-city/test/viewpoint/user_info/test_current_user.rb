@@ -3,7 +3,7 @@ module MobileCity::Viewpoint
   describe UserInfo, "current_user" do
     include ViewpointHelpers
 
-    let(:viewpoint){ build_viewpoint(UserInfo, 'blambeau') }
+    let(:viewpoint){ UserInfo[user_id: 'blambeau'] }
 
     subject{
       query{ current_user }

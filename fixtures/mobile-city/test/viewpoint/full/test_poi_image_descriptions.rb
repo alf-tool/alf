@@ -1,10 +1,10 @@
 require 'test_helper'
-module MobileCity::Viewpoint
-  describe Privacy, "poi_image_descriptions" do
+module MobileCity
+  describe Viewpoint, "poi_image_descriptions" do
     include ViewpointHelpers
 
     pending{
-      let(:viewpoint){ full_viewpoint('blambeau') }
+      let(:viewpoint){ Viewpoint[user_id: 'blambeau'] }
 
       subject{
         query{ poi_image_descriptions }

@@ -11,6 +11,7 @@ module MobileCity
     #
     module Ethics
       include Alf::Viewpoint
+      expects Native, UserInfo
 
       # Restrict sensible POIs if the current user is a child
       def pois

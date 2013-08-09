@@ -8,7 +8,7 @@ module MobileCity::Viewpoint
     }
 
     context "when the user is an adult" do
-      let(:viewpoint){ build_viewpoint(Ethics, 'blambeau') }
+      let(:viewpoint){ Ethics[user_id: 'blambeau'] }
 
       it 'should not restrict POIs at all' do
         subject.should eq(query{ native.pois })
@@ -16,7 +16,7 @@ module MobileCity::Viewpoint
     end
 
     context "when the user is a child" do
-      let(:viewpoint){ build_viewpoint(Ethics, 'mdelsol') }
+      let(:viewpoint){ Ethics[user_id: 'mdelsol'] }
 
       it 'should restrict POIs to non sensible ones only' do
         subject.restrict(sensible: true).should be_empty

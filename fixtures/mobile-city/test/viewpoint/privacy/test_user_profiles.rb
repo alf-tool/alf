@@ -3,7 +3,7 @@ module MobileCity::Viewpoint
   describe Privacy, "user_profiles" do
     include ViewpointHelpers
 
-    let(:viewpoint){ build_viewpoint(Privacy, 'blambeau') }
+    let(:viewpoint){ Privacy[user_id: 'blambeau'] }
 
     subject{
       query{ user_profiles }
