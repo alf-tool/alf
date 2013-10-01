@@ -1,17 +1,49 @@
-GEM
-  remote: http://rubygems.org/
+GIT
+  remote: git://github.com/alf-tool/alf-core.git
+  revision: 9941321fc09aa1417501a4074f579e5d8a9d8642
   specs:
-    alf-core (0.14.0)
+    alf-core (0.15.0)
       domain (~> 1.0)
       myrrha (~> 3.0)
       path (~> 1.3)
-      sexpr (~> 0.5.1)
-    alf-sequel (0.14.0)
-      alf-core (~> 0.14.0)
+      sexpr (~> 0.6.0)
+
+GIT
+  remote: git://github.com/alf-tool/alf-sequel.git
+  revision: c4ce785a83aab8d2085e36c7533c8ce8049b0adb
+  specs:
+    alf-sequel (0.15.0)
+      alf-core (~> 0.15.0)
+      alf-sql (~> 0.15.0)
       sequel (~> 3.48)
-    alf-shell (0.14.0)
-      alf-core (~> 0.14.0)
+
+GIT
+  remote: git://github.com/alf-tool/alf-shell.git
+  revision: 8facde6a7eac740243a96ba7ac1c819f3ad6bbdd
+  specs:
+    alf-shell (0.15.0)
+      alf-core (~> 0.15.0)
       quickl (~> 0.4.3)
+
+GIT
+  remote: git://github.com/alf-tool/alf-sql.git
+  revision: 47a04ddc58feeef5ff38f976cd7d3df88a1f47e5
+  specs:
+    alf-sql (0.15.0)
+      alf-core (~> 0.15.0)
+      sexpr (~> 0.6.0)
+
+GIT
+  remote: git://github.com/alf-tool/alf-test.git
+  revision: 43598f312e3f1372bd2536c2312f7bcfe4fc1dc1
+  specs:
+    alf-test (0.15.0)
+      alf-core (~> 0.15.0)
+      path (~> 1.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
     diff-lcs (1.2.4)
     domain (1.0.0)
     myrrha (3.0.0)
@@ -29,16 +61,18 @@ GEM
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.1)
     sequel (3.48.0)
-    sexpr (0.5.1)
+    sexpr (0.6.0)
     sqlite3 (1.3.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  alf-core (~> 0.14.0)
-  alf-sequel (~> 0.14.0)
-  alf-shell (~> 0.14.0)
+  alf-core!
+  alf-sequel!
+  alf-shell!
+  alf-sql!
+  alf-test!
   jdbc-sqlite3 (~> 3.7)
   pg (~> 0.14)
   rake (~> 10.1)

@@ -6,9 +6,9 @@ template-info:
       safe-override: false
     tasks/spec_test.rake:
       ignore: true
-    spec/spec_helper:
+    spec/spec_helper.rb:
       ignore: true
-    spec/test_alf:
+    spec/test___lower__.rb:
       ignore: true
 variables:
   lower:
@@ -16,7 +16,7 @@ variables:
   upper:
     Alf
   version:
-    0.13.0
+    0.15.0
   summary: |-
     Relational Algebra at your fingertips
   description: |-
@@ -29,8 +29,10 @@ variables:
     - http://rubygems.org/gems/alf
     - http://rubydoc.info/gems/alf
   dependencies:
-    - {name: alf-core,   version: "~> 0.14.0", groups: [runtime]}
-    - {name: alf-sequel, version: "~> 0.14.0", groups: [runtime]}
-    - {name: alf-shell,  version: "~> 0.14.0", groups: [runtime]}
+    - {name: alf-core,   version: "~> 0.15.0", groups: [runtime]}
+    - {name: alf-sql,    version: "~> 0.15.0", groups: [runtime]}
+    - {name: alf-sequel, version: "~> 0.15.0", groups: [runtime]}
+    - {name: alf-shell,  version: "~> 0.15.0", groups: [runtime]}
+    - {name: alf-test,  version: "~> 0.15.0",  groups: [development]}
     - {name: rake,       version: "~> 10.1",   groups: [test, release]}
     - {name: rspec,      version: "~> 2.14",   groups: [test, release]}

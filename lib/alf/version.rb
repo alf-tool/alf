@@ -2,7 +2,7 @@ module Alf
   module Version
 
     MAJOR = 0
-    MINOR = 14
+    MINOR = 15
     TINY  = 0
 
     def self.to_s
