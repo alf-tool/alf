@@ -13,7 +13,7 @@ namespace :mod do
   desc "Install all sub-modules"
   task :add do
     SUB_MODULES.each do |sub|
-      `git submodule add git://github.com/alf-tool/alf-#{sub}.git alf-#{sub}`
+      `git submodule add git@github.com:alf-tool/alf-#{sub}.git alf-#{sub}`
     end
   end
 
