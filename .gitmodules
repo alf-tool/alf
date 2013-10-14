@@ -10,9 +10,6 @@
 [submodule "alf-sequel"]
 	path = alf-sequel
 	url = git://github.com/alf-tool/alf-sequel.git
-[submodule "alf-shell"]
-	path = alf-shell
-	url = git://github.com/alf-tool/alf-shell.git
 [submodule "alf-sql"]
 	path = alf-sql
 	url = git://github.com/alf-tool/alf-sql.git
