@@ -35,6 +35,14 @@ namespace :mod do
     end
   end
 
+  desc "Push to origin on every sub-modules"
+  task :push do
+    SUB_MODULES.each do |sub|
+      puts "Pushing #{sub}"
+      system "cd alf-#{sub} && git push origin"
+    end
+  end
+
   desc "Test sub-modules"
   task :test do
     SUB_MODULES.each do |sub|
