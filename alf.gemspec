@@ -130,6 +130,7 @@ Gem::Specification.new do |s|
   s.add_dependency("alf-sql", "~> 0.15.0")
   s.add_dependency("alf-sequel", "~> 0.15.0")
   s.add_dependency("alf-shell", "~> 0.15.0")
+  s.add_dependency("alf-rack", "~> 0.15.0")
 
   # The version of ruby required by this gem
   #

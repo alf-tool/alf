@@ -1,10 +1,11 @@
 source 'http://rubygems.org'
 
 group :runtime do
-  gem "alf-core",   :git => "git://github.com/alf-tool/alf-core.git"
-  gem "alf-sql",    :git => "git://github.com/alf-tool/alf-sql.git"
-  gem "alf-shell",  :git => "git://github.com/alf-tool/alf-shell.git"
-  gem "alf-sequel", :git => "git://github.com/alf-tool/alf-sequel.git"
+  gem "alf-core",   path: "./alf-core"
+  gem "alf-sql",    path: "./alf-sql"
+  gem "alf-shell",  path: "./alf-shell"
+  gem "alf-sequel", path: "./alf-sequel"
+  gem "alf-rack",   path: "./alf-rack"
 end
 
 group :test do
@@ -13,7 +14,7 @@ group :test do
   gem "sqlite3", "~> 1.3",      :platforms => ['mri', 'rbx']
   gem "jdbc-sqlite3", "~> 3.7", :platforms => ['jruby']
   gem "pg", "~> 0.14",          :platforms => ['mri', 'rbx']
-  gem "alf-test",  :git => "git://github.com/alf-tool/alf-test.git"
+  gem "alf-test",  path: "../alf-test"
 end
 
 group :release do

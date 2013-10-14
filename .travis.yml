@@ -1,4 +1,5 @@
 language: ruby
+gemfile: Gemfile.ci
 bundler_args: --without=release doc extra
 rvm:
   - 1.9.2

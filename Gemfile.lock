@@ -1,6 +1,12 @@
-GIT
-  remote: git://github.com/alf-tool/alf-core.git
-  revision: 9941321fc09aa1417501a4074f579e5d8a9d8642
+PATH
+  remote: ../alf-test
+  specs:
+    alf-test (0.15.0)
+      alf-core (~> 0.15.0)
+      path (~> 1.3)
+
+PATH
+  remote: alf-core
   specs:
     alf-core (0.15.0)
       domain (~> 1.0)
@@ -8,38 +14,36 @@ GIT
       path (~> 1.3)
       sexpr (~> 0.6.0)
 
-GIT
-  remote: git://github.com/alf-tool/alf-sequel.git
-  revision: c4ce785a83aab8d2085e36c7533c8ce8049b0adb
+PATH
+  remote: alf-rack
+  specs:
+    alf-rack (0.15.0)
+      alf-core (~> 0.15.0)
+      rack (~> 1.5)
+      rack-accept (~> 0.4.5)
+      ruby_cop (~> 1.0)
+
+PATH
+  remote: alf-sequel
   specs:
     alf-sequel (0.15.0)
       alf-core (~> 0.15.0)
       alf-sql (~> 0.15.0)
-      sequel (~> 3.48)
+      sequel (~> 4.2)
 
-GIT
-  remote: git://github.com/alf-tool/alf-shell.git
-  revision: 8facde6a7eac740243a96ba7ac1c819f3ad6bbdd
+PATH
+  remote: alf-shell
   specs:
     alf-shell (0.15.0)
       alf-core (~> 0.15.0)
       quickl (~> 0.4.3)
 
-GIT
-  remote: git://github.com/alf-tool/alf-sql.git
-  revision: 47a04ddc58feeef5ff38f976cd7d3df88a1f47e5
+PATH
+  remote: alf-sql
   specs:
     alf-sql (0.15.0)
       alf-core (~> 0.15.0)
       sexpr (~> 0.6.0)
-
-GIT
-  remote: git://github.com/alf-tool/alf-test.git
-  revision: 43598f312e3f1372bd2536c2312f7bcfe4fc1dc1
-  specs:
-    alf-test (0.15.0)
-      alf-core (~> 0.15.0)
-      path (~> 1.3)
 
 GEM
   remote: http://rubygems.org/
@@ -51,6 +55,9 @@ GEM
     path (1.3.3)
     pg (0.14.1)
     quickl (0.4.3)
+    rack (1.5.2)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rake (10.1.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -60,7 +67,8 @@ GEM
     rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.1)
-    sequel (3.48.0)
+    ruby_cop (1.0.5)
+    sequel (4.3.0)
     sexpr (0.6.0)
     sqlite3 (1.3.7)
 
@@ -69,6 +77,7 @@ PLATFORMS
 
 DEPENDENCIES
   alf-core!
+  alf-rack!
   alf-sequel!
   alf-shell!
   alf-sql!
