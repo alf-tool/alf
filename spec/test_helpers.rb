@@ -40,11 +40,11 @@ module AlfIntegrationHelpers
   end
 
   def db
-    Alf::Database.new(adapter, viewpoint: Sap::Views[])
+    @db ||= Alf::Database.new(adapter, viewpoint: Sap::Views[])
   end
 
   def conn
-    db.connection
+    @conn ||= db.connection
   end
 
 end

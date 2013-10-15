@@ -1,8 +1,4 @@
-require 'rspec'
-require 'alf'
-require 'alf-test'
-
-conn = Alf::Test::Sap.connect(:fake)
+require 'test_helpers'
 
 Path.dir.glob('*').select{|f| f.directory? }.each do |folder|
   optimizer = Alf::Optimizer.const_get(folder.basename.to_s.capitalize)
