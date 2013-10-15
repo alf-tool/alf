@@ -1,0 +1,21 @@
+# when matching attributes are preserved
+- alf: |-
+    project(not_matching(suppliers, supplies), [:sid, :name])
+  optimized: |-
+    not_matching(project(suppliers, [:sid, :name]), supplies)
+# when matching attributes are preserved (allbut)
+- alf: |-
+    allbut(not_matching(suppliers, supplies), [:city])
+  optimized: |-
+    not_matching(allbut(suppliers, [:city]), supplies)
+
+# when matching attributes are not preserved
+- alf: |-
+    project(not_matching(suppliers, supplies), [:name])
+  optimized: |-
+    project(not_matching(project(suppliers, [:sid, :name]), supplies), [:name])
+# when matching attributes are not preserved (allbut)
+- alf: |-
+    allbut(not_matching(suppliers, supplies), [:sid, :name])
+  optimized: |-
+    allbut(not_matching(allbut(suppliers, [:name]), supplies), [:sid])

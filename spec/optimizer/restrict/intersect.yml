@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(intersect(suppliers, suppliers), city: 'Paris')
+  optimized: |-
+    intersect(restrict(suppliers, city: 'Paris'), restrict(suppliers, city: 'Paris'))

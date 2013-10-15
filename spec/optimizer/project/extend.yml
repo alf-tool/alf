@@ -1,0 +1,20 @@
+# when extension only is kept
+- alf: |-
+    project(extend(suppliers, a: "A", b: "B"), [:a, :b])
+  optimized: |-
+    project(extend(suppliers, a: "A", b: "B"), [:a, :b])
+# when extension is not at all touched
+- alf: |-
+    project(extend(suppliers, a: "A", b: "B"), [:sid, :a, :b])
+  optimized: |-
+    project(extend(suppliers, a: "A", b: "B"), [:sid, :a, :b])
+# when extension is entirely removed
+- alf: |-
+    project(extend(suppliers, a: "A", b: "B"), [:sid])
+  optimized: |-
+    project(suppliers, [:sid])
+# when extension is partially removed
+- alf: |-
+    project(extend(suppliers, a: "A", b: "B"), [:sid, :a])
+  optimized: |-
+    project(extend(suppliers, a: "A"), [:sid, :a])

@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(sort(suppliers, [:sid, :asc]), city: 'Paris')
+  optimized: |-
+    sort(restrict(suppliers, city: 'Paris'), [:sid, :asc])

@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(project(suppliers, [:sid, :name]), city: 'Paris')
+  optimized: |-
+    project(restrict(suppliers, city: 'Paris'), [:sid, :name])

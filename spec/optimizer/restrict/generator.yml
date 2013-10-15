@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(generator(10, :auto), auto: 2)
+  optimized: |-
+    restrict(generator(10, :auto), auto: 2)

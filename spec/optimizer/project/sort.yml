@@ -1,0 +1,45 @@
+# when all sort attributes are preserved
+- alf: |-
+    project(sort(suppliers, [:name, :asc]), [:sid, :name])
+  optimized: |-
+    sort(project(suppliers, [:sid, :name]), [:name, :asc])
+# when all sort attributes are preserved (allbut)
+- alf: |-
+    allbut(sort(suppliers, [:name, :asc]), [:city])
+  optimized: |-
+    sort(allbut(suppliers, [:city]), [:name, :asc])
+# when no sort attribute is preserved
+- alf: |-
+    project(sort(suppliers, [:name, :asc]), [:sid])
+  optimized: |-
+    project(sort(project(suppliers, [:sid, :name]), [:name, :asc]), [:sid])
+# when no sort attribute is preserved (allbut)
+- alf: |-
+    allbut(sort(suppliers, [:name, :asc]), [:name])
+  optimized: |-
+    allbut(sort(suppliers, [:name, :asc]), [:name])
+# when no sort attribute is preserved (allbut II)
+- alf: |-
+    allbut(sort(suppliers, [:name, :asc]), [:name, :city])
+  optimized: |-
+    allbut(sort(allbut(suppliers, [:city]), [:name, :asc]), [:name])
+# when some sort attributes are preserved
+- alf: |-
+    project(sort(suppliers, [[:name, :asc], [:sid, :asc]]), [:sid])
+  optimized: |-
+    project(sort(project(suppliers, [:sid, :name]), [[:name, :asc], [:sid, :asc]]), [:sid])
+# when some sort attributes are preserved (II)
+- alf: |-
+    project(sort(suppliers, [[:name, :asc], [:sid, :asc]]), [:sid, :city])
+  optimized: |-
+    project(sort(project(suppliers, [:sid, :name, :city]), [[:name, :asc], [:sid, :asc]]), [:sid, :city])
+# when some sort attributes are preserved (allbut)
+- alf: |-
+    allbut(sort(suppliers, [[:name, :asc], [:sid, :asc]]), [:sid])
+  optimized: |-
+    allbut(sort(suppliers, [[:name, :asc], [:sid, :asc]]), [:sid])
+# when some sort attributes are preserved (allbut II)
+- alf: |-
+    allbut(sort(suppliers, [[:name, :asc], [:sid, :asc]]), [:sid, :city])
+  optimized: |-
+    allbut(sort(allbut(suppliers, [:city]), [[:name, :asc], [:sid, :asc]]), [:sid])

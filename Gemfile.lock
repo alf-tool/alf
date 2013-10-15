@@ -1,5 +1,5 @@
 PATH
-  remote: ../alf-test
+  remote: ./alf-test
   specs:
     alf-test (0.15.0)
       alf-core (~> 0.15.0)

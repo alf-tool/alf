@@ -1,0 +1,10 @@
+- alf: |-
+    project(intersect(suppliers_in_london, suppliers_in_paris), [:name])
+  optimized: |-
+    project(intersect(suppliers_in_london, suppliers_in_paris), [:name])
+  comment: |-
+    This is NOT intersect(project, project). Indeed, no supplier is both in
+    Paris and in London, so the intersection is empty and hence the projection.
+    In contrast, two suppliers might have the same name and be one in London
+    and the other in Paris. Therefore, projecting first would return those
+    two names and the intersection would not be empty.

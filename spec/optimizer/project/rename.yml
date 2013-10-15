@@ -1,0 +1,30 @@
+# when renaming is preserved
+- alf: |-
+    project(rename(suppliers, :sid => :id), [:id, :name])
+  optimized: |-
+    rename(project(suppliers, [:sid, :name]), :sid => :id)
+# when renaming is preserved (allbut)
+- alf: |-
+    allbut(rename(suppliers, :sid => :id), [:city])
+  optimized: |-
+    rename(allbut(suppliers, [:city]), :sid => :id)
+# when renaming is projected away
+- alf: |-
+    project(rename(suppliers, :sid => :id), [:name])
+  optimized: |-
+    project(suppliers, [:name])
+# when renaming is partially projected away
+- alf: |-
+    project(rename(suppliers, :sid => :id, :name => :sname), [:sname])
+  optimized: |-
+    rename(project(suppliers, [:name]), :name => :sname)
+# when renaming is projected away (allbut)
+- alf: |-
+    allbut(rename(suppliers, :sid => :id), [:id, :name])
+  optimized: |-
+    allbut(suppliers, [:sid, :name])
+# when renaming is partially projected away (allbut)
+- alf: |-
+    allbut(rename(suppliers, :sid => :id, :name => :sname), [:id])
+  optimized: |-
+    rename(allbut(suppliers, [:sid]), :name => :sname)

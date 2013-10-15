@@ -1,0 +1,9 @@
+- alf: |-
+    project(minus(suppliers_in_london, suppliers_in_paris), [:name])
+  optimized: |-
+    project(minus(suppliers_in_london, suppliers_in_paris), [:name])
+  comment: |-
+    This is NOT minus(project, project). Indeed, as a supplier cannot be both
+    in Paris and in London, the minus simply returns the left operand. In
+    contrast, if we project first then the city information is lost and we
+    could restrict the left operand through common names, which is wrong.

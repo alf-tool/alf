@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(clip(suppliers, [:sid, :name]), city: 'Paris')
+  optimized: |-
+    clip(restrict(suppliers, city: 'Paris'), [:sid, :name])

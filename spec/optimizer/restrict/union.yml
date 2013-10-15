@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(union(suppliers, suppliers), city: 'Paris')
+  optimized: |-
+    union(restrict(suppliers, city: 'Paris'), restrict(suppliers, city: 'Paris'))

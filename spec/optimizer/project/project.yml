@@ -1,0 +1,88 @@
+# projection on leaf operand
+- alf: |-
+    project(suppliers, [:sid])
+  optimized: |-
+    project(suppliers, [:sid])
+
+# allbut on leaf operand
+- alf: |-
+    allbut(suppliers, [:sid])
+  optimized: |-
+    allbut(suppliers, [:sid])
+
+# project(project) on different sets
+- alf: |-
+    project(project(suppliers, [:sid]), [:name])
+  optimized: |-
+    project(suppliers, [])
+# project(project) on a subset
+- alf: |-
+    project(project(suppliers, [:sid, :name]), [:sid])
+  optimized: |-
+    project(suppliers, [:sid])
+# project(project) on a superset
+- alf: |-
+    project(project(suppliers, [:sid]), [:sid, :name])
+  optimized: |-
+    project(suppliers, [:sid])
+
+# allbut(allbut) on different sets
+- alf: |-
+    allbut(allbut(suppliers, [:sid]), [:name])
+  optimized: |-
+    allbut(suppliers, [:sid, :name])
+# allbut(allbut) on a subset
+- alf: |-
+    allbut(allbut(suppliers, [:sid, :name]), [:sid])
+  optimized: |-
+    allbut(suppliers, [:sid, :name])
+# allbut(allbut) on a superset
+- alf: |-
+    allbut(allbut(suppliers, [:sid]), [:sid, :name])
+  optimized: |-
+    allbut(suppliers, [:sid, :name])
+
+# project(allbut(...)) on different sets
+- alf: |-
+    project(allbut(suppliers, [:name]), [:sid])
+  optimized: |-
+    project(suppliers, [:sid])
+# project(allbut(...)) on a subset
+- alf: |-
+    project(allbut(suppliers, [:sid, :name]), [:sid])
+  optimized: |-
+    project(suppliers, [])
+# project(allbut(...)) on a superset
+- alf: |-
+    project(allbut(suppliers, [:sid]), [:sid, :name])
+  optimized: |-
+    project(suppliers, [:name])
+
+# allbut(project(...)) on different sets
+- alf: |-
+    allbut(project(suppliers, [:name]), [:sid])
+  optimized: |-
+    project(suppliers, [:name])
+# allbut(project(...)) on a subset
+- alf: |-
+    allbut(project(suppliers, [:sid, :name]), [:sid])
+  optimized: |-
+    project(suppliers, [:name])
+# allbut(project(...)) on a superset
+- alf: |-
+    allbut(project(suppliers, [:sid]), [:sid, :name])
+  optimized: |-
+    project(suppliers, [])
+
+# project when used inside another otherator
+- alf: |-
+    rename(project(project(suppliers, [:name, :sid]), [:sid]), sid: :id)
+  optimized: |-
+    rename(project(suppliers, [:sid]), sid: :id)
+# project when should be applied recursively
+- alf: |-
+    inside = project(project(suppliers, [:sid, :name, :status]), [:name, :status])
+    project(intersect(inside, suppliers), [:sname])
+  optimized: |-
+    inside = project(suppliers, [:name, :status])
+    project(intersect(inside, suppliers), [:sname])

@@ -1,0 +1,4 @@
+- alf: |-
+    restrict(minus(suppliers, suppliers), city: 'Paris')
+  optimized: |-
+    minus(restrict(suppliers, city: 'Paris'), restrict(suppliers, city: 'Paris'))

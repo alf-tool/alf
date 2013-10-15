@@ -1,0 +1,8 @@
+- alf: |-
+    project(union(suppliers_in_london, suppliers_in_paris), [:name])
+  optimized: |-
+    union(project(suppliers_in_london, [:name]), project(suppliers_in_paris, [:name]))
+- alf: |-
+    allbut(union(suppliers_in_london, suppliers_in_paris), [:name])
+  optimized: |-
+    union(allbut(suppliers_in_london, [:name]), allbut(suppliers_in_paris, [:name]))

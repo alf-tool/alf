@@ -1,0 +1,20 @@
+# join preserving all join attributes
+- alf: |-
+    project(join(suppliers, supplies), [:sid, :name, :pid, :qty])
+  optimized: |-
+    join(project(suppliers, [:sid, :name]), supplies)
+# join preserving all join attributes (allbut)
+- alf: |-
+    allbut(join(suppliers, supplies), [:status, :qty])
+  optimized: |-
+    join(allbut(suppliers, [:status]), allbut(supplies, [:qty]))
+# when not preserving all join attributes
+- alf: |-
+    project(join(suppliers, supplies), [:name, :qty])
+  optimized: |-
+    project(join(project(suppliers, [:sid, :name]), project(supplies, [:sid, :qty])), [:name, :qty])
+# when not preserving all join attributes (allbut)
+- alf: |-
+    allbut(join(suppliers, supplies), [:sid, :pid])
+  optimized: |-
+    allbut(join(suppliers, allbut(supplies, [:pid])), [:sid])

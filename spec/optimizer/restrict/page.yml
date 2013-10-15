@@ -1,0 +1,12 @@
+# restrict of a page is not optimizable
+- alf: |-
+    restrict(page(suppliers, [:name], 1, page_size: 5), city: 'Paris')
+  optimized: |-
+    restrict(page(suppliers, [:name], 1, page_size: 5), city: 'Paris')
+# ... but the inner operand is
+- alf: |-
+    inside = restrict(compact(suppliers), city: 'Paris')
+    restrict(page(inside, [:name], 1, page_size: 5), city: 'Paris')
+  optimized: |-
+    inside = compact(restrict(suppliers, city: 'Paris'))
+    restrict(page(inside, [:name], 1, page_size: 5), city: 'Paris')
