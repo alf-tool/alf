@@ -1,0 +1,57 @@
+# not_matching with no attribute
+- alf: |-
+    not_matching(suppliers, project(supplies, [:qty]))
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+      WHERE NOT(EXISTS(SELECT * FROM supplies AS t2))
+# not matching on one single attribute
+- alf: |-
+    not_matching(suppliers, supplies)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+      WHERE NOT(t1.sid IN (SELECT t2.sid FROM supplies AS t2))
+# not_matching on multiple attributes
+- alf: |-
+    not_matching(suppliers, parts)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+      WHERE NOT(EXISTS(
+        SELECT t2.name, t2.city
+          FROM parts AS t2
+         WHERE t1.name = t2.name
+           AND t1.city = t2.city))
+# not_matching with a union at left
+- alf: |-
+    not_matching(union(suppliers_in_london, suppliers_in_paris), supplies)
+  sql: |-
+    WITH t4 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city
+         FROM suppliers AS t1
+        WHERE t1.city = 'London')
+      UNION
+      (SELECT t2.sid, t2.name, t2.status, t2.city
+        FROM suppliers AS t2
+       WHERE t2.city = 'Paris')
+    )
+    SELECT t4.sid, t4.name, t4.status, t4.city
+      FROM t4 AS t4
+     WHERE NOT(t4.sid IN (SELECT t3.sid FROM supplies AS t3))
+# not_matching with a union at right
+- alf: |-
+    not_matching(supplies, union(suppliers_in_london, suppliers_in_paris))
+  sql: |-
+    WITH t4 AS (
+      (SELECT t2.sid, t2.name, t2.status, t2.city
+         FROM suppliers AS t2
+        WHERE t2.city = 'London')
+      UNION
+      (SELECT t3.sid, t3.name, t3.status, t3.city
+        FROM suppliers AS t3
+       WHERE t3.city = 'Paris')
+    )
+    SELECT t1.sid, t1.pid, t1.qty
+      FROM supplies AS t1
+     WHERE NOT(t1.sid IN (SELECT t4.sid FROM t4 AS t4))

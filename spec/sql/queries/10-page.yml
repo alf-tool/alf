@@ -1,0 +1,31 @@
+- alf: |-
+    page(suppliers, [[:city, :desc], [:sid, :asc]], 1, page_size: 10)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     ORDER BY t1.city DESC, t1.sid ASC
+     LIMIT 10 OFFSET 0
+#
+- alf: |-
+    page(suppliers, [[:city, :desc], [:sid, :asc]], -1, page_size: 10)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     ORDER BY t1.city ASC, t1.sid DESC
+     LIMIT 10 OFFSET 0
+#
+- alf: |-
+    page(suppliers, [[:city, :desc], [:sid, :asc]], 2, page_size: 10)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     ORDER BY t1.city DESC, t1.sid ASC
+     LIMIT 10 OFFSET 10
+#
+- alf: |-
+    page(suppliers, [[:city, :desc]], 2, page_size: 10)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     ORDER BY t1.city DESC, t1.sid ASC
+     LIMIT 10 OFFSET 10

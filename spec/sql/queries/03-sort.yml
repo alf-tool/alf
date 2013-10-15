@@ -1,0 +1,58 @@
+- alf: |-
+    sort(suppliers, [[:sid, :asc]])
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.sid ASC
+#
+- alf: |-
+    sort(suppliers, [[:sid, :desc]])
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.sid DESC
+#
+- alf: |-
+    sort(suppliers, [[:city, :desc], [:sid, :asc]])
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.city DESC, t1.sid ASC
+#
+- alf: |-
+    sort(sort(suppliers, [[:sid, :asc], [:city, :desc]]), [:sid, :asc])
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.sid ASC, t1.city DESC
+#
+- alf: |-
+    sort(sort(suppliers, [:sid, :asc]), [:sid, :desc])
+  sql: |-
+    WITH t2 AS (
+      SELECT t1.sid,
+             t1.name,
+             t1.status,
+             t1.city
+        FROM suppliers AS t1
+       ORDER BY t1.sid ASC
+    )
+    SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM t2 AS t2
+    ORDER BY t2.sid DESC
+#
+- alf: |-
+    sort(union(suppliers_in_paris, suppliers_in_london), [[:sid, :asc]])
+  sql: |-
+    WITH t3 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       WHERE t1.city = 'Paris')
+       UNION
+     (SELECT t2.sid, t2.name, t2.status, t2.city
+       FROM suppliers AS t2
+      WHERE t2.city = 'London')
+    )
+    SELECT t3.sid, t3.name, t3.status, t3.city
+      FROM t3 AS t3
+    ORDER BY t3.sid ASC

@@ -1,0 +1,90 @@
+# A base union case
+- alf: |-
+    union(suppliers_in_london, suppliers_in_paris)
+  sql:
+    (SELECT t1.sid, t1.name, t1.status, t1.city
+       FROM suppliers AS t1
+      WHERE t1.city = 'London')
+    UNION
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM suppliers AS t2
+     WHERE t2.city = 'Paris')
+# union requiring a reordering
+- alf: |-
+    union(project(suppliers, [:name, :city]), rename(cities, country: :name))
+  sql: |-
+    (SELECT t1.name, t1.city
+      FROM suppliers AS t1)
+    UNION
+    (SELECT t2.country AS name, t2.city
+      FROM cities AS t2)
+# union of union
+- alf: |-
+    union(union(suppliers_in_london, suppliers_in_paris), suppliers)
+  sql:
+    ((SELECT t1.sid, t1.name, t1.status, t1.city
+       FROM suppliers AS t1
+      WHERE t1.city = 'London')
+    UNION
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM suppliers AS t2
+     WHERE t2.city = 'Paris'))
+    UNION
+    (SELECT t3.sid, t3.name, t3.status, t3.city
+      FROM suppliers AS t3)
+# union with a with_exp at left
+- alf: |-
+    union(sort(sort(suppliers_in_london, [:sid, :asc]), [:sid, :desc]), suppliers_in_paris)
+  sql:
+    WITH t2 AS (
+      SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       WHERE t1.city = 'London'
+       ORDER BY t1.sid ASC
+    )
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM t2 AS t2
+    ORDER BY t2.sid DESC)
+    UNION
+    (SELECT t3.sid, t3.name, t3.status, t3.city
+      FROM suppliers AS t3
+     WHERE t3.city = 'Paris')
+# union with a with_exp at right
+- alf: |-
+    union(suppliers_in_london, sort(sort(suppliers_in_paris, [:sid, :asc]), [:sid, :desc]))
+  sql:
+    WITH t3 AS (
+      SELECT t2.sid, t2.name, t2.status, t2.city
+        FROM suppliers AS t2
+       WHERE t2.city = 'Paris'
+       ORDER BY t2.sid ASC
+    )
+    (SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.city = 'London')
+    UNION
+    (SELECT t3.sid, t3.name, t3.status, t3.city
+       FROM t3 AS t3
+      ORDER BY t3.sid DESC)
+# union of two with_exps
+- alf: |-
+    union(sort(sort(suppliers_in_london, [:sid, :asc]), [:sid, :desc]),
+          sort(sort(suppliers_in_paris, [:sid, :asc]), [:sid, :desc]))
+  sql:
+    WITH t2 AS (
+            SELECT t1.sid, t1.name, t1.status, t1.city
+              FROM suppliers AS t1
+             WHERE t1.city = 'London'
+             ORDER BY t1.sid ASC),
+         t4 AS (
+            SELECT t3.sid, t3.name, t3.status, t3.city
+              FROM suppliers AS t3
+             WHERE t3.city = 'Paris'
+             ORDER BY t3.sid ASC)
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+       FROM t2 AS t2
+      ORDER BY t2.sid DESC)
+    UNION 
+    (SELECT t4.sid, t4.name, t4.status, t4.city
+       FROM t4 AS t4
+      ORDER BY t4.sid DESC)

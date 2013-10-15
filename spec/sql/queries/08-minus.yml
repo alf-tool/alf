@@ -1,0 +1,23 @@
+- alf: |-
+    minus(suppliers_in_london, suppliers_in_paris)
+  sql:
+    (SELECT t1.sid, t1.name, t1.status, t1.city
+       FROM suppliers AS t1
+      WHERE t1.city = 'London')
+    EXCEPT
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM suppliers AS t2
+     WHERE t2.city = 'Paris')
+- alf: |-
+    minus(minus(suppliers_in_london, suppliers_in_paris), suppliers)
+  sql:
+    ((SELECT t1.sid, t1.name, t1.status, t1.city
+       FROM suppliers AS t1
+      WHERE t1.city = 'London')
+    EXCEPT
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM suppliers AS t2
+      WHERE t2.city = 'Paris'))
+    EXCEPT
+    (SELECT t3.sid, t3.name, t3.status, t3.city
+      FROM suppliers AS t3)

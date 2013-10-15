@@ -1,0 +1,114 @@
+# base case
+- alf: |-
+    restrict(suppliers, sid: 'S1')
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid = 'S1'
+# when renamed: desalisation required
+- alf: |-
+    restrict(rename(suppliers, sid: :id), id: 'S1')
+  sql: |-
+    SELECT t1.sid AS id, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid = 'S1'
+# TRUE
+- alf: |-
+    restrict(suppliers, true)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE TRUE
+# FALSE
+- alf: |-
+    restrict(suppliers, false)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE FALSE
+# AND
+- alf: |-
+    restrict(suppliers, sid: 'S1', city: 'London')
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid = 'S1' AND t1.city = 'London'
+# OR
+- alf: |-
+    restrict(suppliers, Alf::Predicate.or(eq(:sid, 'S1'), eq(:sid, 'S2')))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid = 'S1' OR t1.sid = 'S2'
+# NOT =
+- alf: |-
+    restrict(suppliers, !eq(:sid, 'S1'))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid <> 'S1'
+# NOT AND
+- alf: |-
+    restrict(suppliers, !(eq(:sid, 'S1') & eq(:status, 20)))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE NOT(t1.sid = 'S1' AND t1.status = 20)
+# NOT EQUAL
+- alf: |-
+    restrict(suppliers, neq(:sid, 'S1'))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid <> 'S1'
+# GREATER
+- alf: |-
+    restrict(suppliers, gt(:status, 10))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.status > 10
+# GREATER OR EQUAL
+- alf: |-
+    restrict(suppliers, gte(:status, 10))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.status >= 10
+# LESS THAN
+- alf: |-
+    restrict(suppliers, lt(:status, 10))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.status < 10
+# LESS THAN OR EQUAL
+- alf: |-
+    restrict(suppliers, lte(:status, 10))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.status <= 10
+# IN
+- alf: |-
+    restrict(suppliers, Alf::Predicate.in(:sid, ['S1', 'S2']))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid IN ('S1', 'S2')
+# restrict(restrict)
+- alf: |-
+    restrict(restrict(suppliers, sid: 'S1'), status: 20)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+     WHERE t1.sid = 'S1' AND t1.status = 20
+# restrict(join)
+- alf: |-
+    restrict(join(suppliers, supplies), sid: 'S2', qty: 300)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     WHERE t1.sid = 'S2'
+       AND t2.qty = 300

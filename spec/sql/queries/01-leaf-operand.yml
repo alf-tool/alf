@@ -1,0 +1,5 @@
+- alf: |-
+    suppliers
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1

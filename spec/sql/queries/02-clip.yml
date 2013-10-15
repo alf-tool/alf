@@ -1,0 +1,12 @@
+# normal clip
+- alf: |-
+    clip(suppliers, [:sid, :status])
+  sql: |-
+    SELECT t1.sid, t1.status
+      FROM suppliers AS t1
+# clip with no attribute at all
+- alf: |-
+    clip(suppliers, [])
+  sql: |-
+    SELECT TRUE AS is_table_dee
+    WHERE EXISTS(SELECT * FROM suppliers AS t1)

@@ -1,0 +1,3 @@
+- alf: |-
+    wrap(suppliers, [:name, :city, :status], :attributes)
+  sql: ~

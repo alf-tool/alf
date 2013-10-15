@@ -1,0 +1,28 @@
+# reusing base case
+- alf: |-
+    union(
+      matching(suppliers_in_paris, cities),
+      not_matching(suppliers_in_paris, cities))
+  sql: |-
+    (SELECT t1.sid, t1.name, t1.status, t1.city 
+       FROM suppliers AS t1
+      WHERE t1.city = 'Paris'
+        AND t1.city IN (SELECT t2.city FROM cities AS t2))
+    UNION
+    (SELECT t3.sid, t3.name, t3.status, t3.city
+       FROM suppliers AS t3
+      WHERE t3.city = 'Paris'
+        AND NOT(t3.city IN (SELECT t4.city FROM cities AS t4)))
+  sql: |-
+    WITH t2 AS (
+      SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       WHERE t1.city = 'Paris'
+    )
+    (SELECT t2.sid, t2.name, t2.status, t2.city
+       FROM t2 AS t2
+      WHERE t2.city IN (SELECT t3.city FROM cities AS t3))
+    UNION
+    (SELECT t4.sid, t4.name, t4.status, t4.city
+       FROM t2 AS t4
+      WHERE NOT(t4.city IN (SELECT t5.city FROM cities AS t5)))

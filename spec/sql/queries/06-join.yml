@@ -1,0 +1,207 @@
+# cross join
+- alf: |-
+    join(project(suppliers, [:sid]), project(parts, [:pid]))
+  sql:
+    SELECT t1.sid, t2.pid
+      FROM suppliers AS t1, parts AS t2
+# inner join
+- alf: |-
+    join(suppliers, supplies)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+# inner join with same operand
+- alf: |-
+    join(suppliers, suppliers)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+      JOIN suppliers AS t2 ON  t1.sid = t2.sid
+                           AND t1.name = t2.name
+                           AND t1.status = t2.status
+                           AND t1.city = t2.city
+# inner join requiring keeping a common distinct
+- alf: |-
+    join(project(suppliers, [:city]), project(parts, [:city]))
+  sql:
+    SELECT DISTINCT t1.city
+      FROM suppliers AS t1
+      JOIN parts AS t2 ON t1.city = t2.city
+# inner join requiring keeping the left distinct
+- alf: |-
+    join(project(suppliers, [:city]), parts)
+  sql:
+    SELECT DISTINCT t1.city, t2.pid, t2.name, t2.color, t2.weight
+      FROM suppliers AS t1
+      JOIN parts AS t2 ON t1.city = t2.city
+# inner join requiring keeping the right distinct
+- alf: |-
+    join(suppliers, project(parts, [:city]))
+  sql:
+    SELECT DISTINCT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+      JOIN parts AS t2 ON t1.city = t2.city
+# inner join requiring renamings
+- alf: |-
+    join(rename(suppliers, sid: :id), rename(supplies, sid: :id))
+  sql:
+    SELECT t1.sid AS id, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+# triple join
+- alf: |-
+    join(join(suppliers, supplies), project(parts, [:pid, :color]))
+  sql:
+    WITH t4 AS (
+      SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+        FROM suppliers AS t1
+        JOIN supplies  AS t2 ON t1.sid = t2.sid
+    )
+    SELECT t4.sid, t4.name, t4.status, t4.city, t4.pid, t4.qty, t3.color
+      FROM t4 AS t4
+      JOIN parts AS t3 ON t4.pid = t3.pid
+# join of two joins
+- alf: |-
+    join(join(suppliers, cities), join(project(parts, [:pid, :color]), supplies))
+  sql:
+    WITH
+      t5 AS (
+        SELECT t1.sid, t1.name, t1.status, t1.city, t2.country
+          FROM suppliers AS t1
+          JOIN cities AS t2 ON t1.city = t2.city
+      ),
+      t6 AS (
+        SELECT t3.pid, t3.color, t4.sid, t4.qty
+          FROM parts AS t3
+          JOIN supplies AS t4 ON t3.pid = t4.pid
+      )
+    SELECT t5.sid, t5.name, t5.status, t5.city, t5.country, t6.pid, t6.color, t6.qty
+      FROM t5 AS t5
+      JOIN t6 AS t6 ON t5.sid = t6.sid
+# join with a where clause at left
+- alf: |-
+    join(restrict(suppliers, sid: 'S2'), supplies)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     WHERE t1.sid = 'S2'
+# join with a where clause at right
+- alf: |-
+    join(suppliers, restrict(supplies, sid: 'S2'))
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     WHERE t2.sid = 'S2'
+# join with where clauses both sides
+- alf: |-
+    join(restrict(suppliers, sid: 'S2'), restrict(supplies, qty: 300))
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     WHERE t1.sid = 'S2'
+       AND t2.qty = 300
+# join with an order-by clause at left
+- alf: |-
+    join(sort(suppliers, [:sid, :asc]), supplies)
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     ORDER BY t1.sid ASC
+# join with an order-by clause at right
+- alf: |-
+    join(suppliers, sort(supplies, [:qty, :asc]))
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     ORDER BY t2.qty ASC
+# join with an order-by clause on both sides
+- alf: |-
+    join(sort(suppliers, [:sid, :asc]), sort(supplies, [:qty, :asc]))
+  sql:
+    SELECT t1.sid, t1.name, t1.status, t1.city, t2.pid, t2.qty
+      FROM suppliers AS t1
+      JOIN supplies  AS t2 ON t1.sid = t2.sid
+     ORDER BY t1.sid ASC, t2.qty ASC
+# join with a limit/offset clause at left
+- alf: |-
+    join(frame(suppliers, [:sid, :asc], 5, 10), supplies)
+  sql:
+    WITH t3 AS (
+      SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+        ORDER BY t1.sid ASC
+        LIMIT 10 OFFSET 5
+    )
+    SELECT t3.sid, t3.name, t3.status, t3.city, t2.pid, t2.qty
+      FROM t3 AS t3
+      JOIN supplies AS t2 ON t3.sid = t2.sid
+# join with a limit/offset clause at right
+- alf: |-
+    join(suppliers, frame(supplies, [[:sid, :asc], [:pid, :asc]], 5, 10))
+  sql:
+    WITH t3 AS (
+      SELECT t2.sid, t2.pid, t2.qty
+        FROM supplies AS t2
+        ORDER BY t2.sid ASC, t2.pid ASC
+        LIMIT 10 OFFSET 5
+    )
+    SELECT t1.sid, t1.name, t1.status, t1.city, t3.pid, t3.qty
+      FROM suppliers AS t1
+      JOIN t3 AS t3 ON t1.sid = t3.sid
+# join with a limit/offset clause on both sides
+- alf: |-
+    join(frame(suppliers, [:sid, :asc], 5, 10),
+         frame(supplies, [[:sid, :asc], [:pid, :asc]], 5, 10))
+  sql:
+    WITH t3 AS (SELECT t1.sid, t1.name, t1.status, t1.city
+                  FROM suppliers AS t1
+                 ORDER BY t1.sid ASC
+                 LIMIT 10 OFFSET 5),
+         t4 AS (SELECT t2.sid, t2.pid, t2.qty
+                  FROM supplies AS t2
+                 ORDER BY t2.sid ASC, t2.pid ASC
+                 LIMIT 10 OFFSET 5)
+    SELECT t3.sid, t3.name, t3.status, t3.city, t4.pid, t4.qty
+      FROM t3 AS t3
+      JOIN t4 AS t4 ON t3.sid = t4.sid
+# join on a union at left
+- alf: |-
+    join(union(suppliers_in_london, suppliers_in_paris), supplies)
+  sql:
+    WITH t4 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       WHERE t1.city = 'London')
+      UNION
+      (SELECT t2.sid, t2.name, t2.status, t2.city
+        FROM suppliers AS t2
+       WHERE t2.city = 'Paris')
+    )
+    SELECT t4.sid, t4.name, t4.status, t4.city, t3.pid, t3.qty
+      FROM t4 AS t4
+      JOIN supplies AS t3 ON t4.sid = t3.sid
+# join on a union at right
+- alf: |-
+    join(supplies, union(suppliers_in_london, suppliers_in_paris))
+  sql:
+    WITH t4 AS (
+      (SELECT t2.sid, t2.name, t2.status, t2.city
+        FROM suppliers AS t2
+       WHERE t2.city = 'London')
+      UNION
+      (SELECT t3.sid, t3.name, t3.status, t3.city
+        FROM suppliers AS t3
+       WHERE t3.city = 'Paris')
+    )
+    SELECT t1.sid, t1.pid, t1.qty, t4.name, t4.status, t4.city
+      FROM supplies AS t1 
+      JOIN t4 AS t4 ON t1.sid = t4.sid
+# joining from Relation::DEE
+- alf: |-
+    join(Relation::DEE, suppliers)

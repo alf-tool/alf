@@ -1,0 +1,57 @@
+# BASE case
+- alf: |-
+    frame(suppliers, [[:sid, :asc]], 2, 4)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.sid ASC
+    LIMIT 4 OFFSET 2
+# KEY INFERENCE for total ordering
+- alf: |-
+    frame(suppliers, [[:city, :desc]], 2, 4)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.city DESC, t1.sid ASC
+    LIMIT 4 OFFSET 2
+# ORDER BY already ok
+- alf: |-
+    frame(sort(suppliers, [[:city, :desc], [:sid, :asc]]), [[:city, :desc]], 2, 4)
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+    ORDER BY t1.city DESC, t1.sid ASC
+    LIMIT 4 OFFSET 2
+# ORDER BY existing but incompatible
+- alf: |-
+    frame(sort(suppliers, [[:sid, :asc], [:city, :desc]]), [[:city, :desc]], 2, 4)
+  sql: |-
+    WITH t2 AS (
+      SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       ORDER BY t1.sid ASC, t1.city DESC
+    )
+    SELECT t2.sid, t2.name, t2.status, t2.city
+      FROM t2 AS t2
+    ORDER BY t2.city DESC, t2.sid ASC
+    LIMIT 4 OFFSET 2
+# UNION and other nadics
+- alf: |-
+    frame(union(suppliers_in_paris, suppliers_in_london), [[:sid, :asc]], 2, 4)
+  sql: |-
+    WITH t3 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city
+        FROM suppliers AS t1
+       WHERE t1.city = 'Paris')
+      UNION
+      (SELECT t2.sid, t2.name, t2.status, t2.city
+        FROM suppliers AS t2
+       WHERE t2.city = 'London')
+    )
+    SELECT t3.sid, t3.name, t3.status, t3.city
+      FROM t3 AS t3
+    ORDER BY t3.sid ASC, t3.name ASC, t3.status ASC, t3.city ASC
+    LIMIT 4 OFFSET 2
+  comment: |-
+    The big ordering comes from the fact that key inference is not smart
+    enough to detect that sid is still a key in the resulting union.

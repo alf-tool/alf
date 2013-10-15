@@ -1,24 +1,33 @@
 require 'alf'
 require 'rspec'
+require 'sap'
 
-module Alf::IntegrationTestHelpers
+ENV['DATABASE'] ||= 'postgres'
+
+module AlfIntegrationHelpers
+
+  FIXTURES_FOLDER = Path.backfind('fixtures')
+
+  DATABASE_ADAPTERS = {
+    "fake"     => Alf.examples_adapter,
+    "sqlite"   => FIXTURES_FOLDER/"suppliers-and-parts/suppliers-and-parts.db",
+    "postgres" => "postgres://alf@localhost/suppliers_and_parts"
+  }
 
   def fixtures_folder
-    Path.backfind("fixtures")
+    FIXTURES_FOLDER
   end
 
-  class Victim
-
-    def conn_spec
-      ENV['ALF_VICTIM_CONN_SPEC'] || "#{Alf::Sequel::Adapter.sqlite_protocol}:memory"
-    end
+  def adapter
+    DATABASE_ADAPTERS[ENV['DATABASE']]
   end
 
-  def victim
-    @victim ||= Victim.new
+  def db
+    Alf::Database.new(adapter, viewpoint: Sap::Views[])
   end
+
 end
 
 RSpec.configure do |c|
-  c.include(Alf::IntegrationTestHelpers)
+  c.include(AlfIntegrationHelpers)
 end

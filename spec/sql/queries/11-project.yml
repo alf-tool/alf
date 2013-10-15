@@ -1,0 +1,48 @@
+# normal case
+- alf: |-
+    project(suppliers, [:sid])
+  sql: |-
+    SELECT t1.sid
+      FROM suppliers AS t1
+# allbut case
+- alf: |-
+    project(suppliers, [:sid], allbut: true)
+  sql: |-
+    SELECT t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+# unique, non primary key
+- alf: |-
+    project(suppliers, [:name])
+  sql: |-
+    SELECT t1.name
+      FROM suppliers AS t1
+# requiring distinct
+- alf: |-
+    project(suppliers, [:status])
+  sql: |-
+    SELECT DISTINCT t1.status
+      FROM suppliers AS t1
+# a special case where attributes are taken in another order
+- alf: |-
+    project(suppliers, [:status, :city, :name])
+  sql: |-
+    SELECT t1.name, t1.status, t1.city
+      FROM suppliers AS t1
+  comment: |-
+    The projection applies to the heading, that keeps its own order. The
+    ordering of fields therefore differs from what could be expected. It's
+    not a semantics issue, though.
+# empty projection
+- alf: |-
+    project(suppliers, [])
+  sql: |-
+    SELECT TRUE AS is_table_dee
+    WHERE EXISTS(SELECT * FROM suppliers AS t1)
+# empty projection or empty projection
+- alf: |-
+    project(project(suppliers, []), [])
+  sql: |-
+    SELECT TRUE AS is_table_dee
+    WHERE EXISTS(
+      SELECT TRUE AS is_table_dee
+        WHERE EXISTS(SELECT * FROM suppliers AS t1))
