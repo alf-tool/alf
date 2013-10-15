@@ -1,0 +1,10 @@
+- alf: |-
+    suppliers
+  keys:
+    - [ sid  ]
+    - [ name ]
+- alf: |-
+    matching(suppliers, Relation(city: ['London', 'Paris']))
+  keys:
+    - [ sid  ]
+    - [ name ]
