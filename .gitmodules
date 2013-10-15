@@ -16,6 +16,3 @@
 [submodule "alf-rest"]
 	path = alf-rest
 	url = git@github.com:alf-tool/alf-rest.git
-[submodule "alf-test"]
-	path = alf-test
-	url = git@github.com:alf-tool/alf-test.git
