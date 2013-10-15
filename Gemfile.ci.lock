@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/alf-tool/alf-core.git
-  revision: f5668eabb30e3dc69b4d223195252fa6b69f0c39
+  revision: d695b3df31be1079d608a804d5cda624fd4786ee
   specs:
     alf-core (0.15.0)
       domain (~> 1.0)
@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-rack.git
-  revision: 1e870a034368c2fd6c705867cebf05fddb664602
+  revision: 17446def1ece2ada73c90395e51b23db0e001c38
   specs:
     alf-rack (0.15.0)
       alf-core (~> 0.15.0)
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-sequel.git
-  revision: 1825f500cc4368f7783f014b367570f05b1081fd
+  revision: 0a662364807357f2969c62fda63c5a5a398e8aca
   specs:
     alf-sequel (0.15.0)
       alf-core (~> 0.15.0)
@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-shell.git
-  revision: 36bcb420b13d8f90e454e052fd5a77ab2cba1523
+  revision: e85ec88a9216b4121093a58e7c0c6b1371157c24
   specs:
     alf-shell (0.15.0)
       alf-core (~> 0.15.0)
@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: git://github.com/alf-tool/alf-sql.git
-  revision: 4bc3c41aff014629016cba8b545da56d27b95598
+  revision: 27afd56510ae43ba89379786dc8e22c8482645cc
   specs:
     alf-sql (0.15.0)
       alf-core (~> 0.15.0)

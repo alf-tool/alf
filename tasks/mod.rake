@@ -42,6 +42,28 @@ namespace :mod do
     end
   end
 
+  desc "Run bundle-update on each submodule"
+  task :"bundle-update" do
+    SUB_MODULES.each do |sub|
+      Bundler.with_clean_env do
+        puts "Running bundle in #{sub}"
+        system "cd alf-#{sub} && bundle update"
+        system "cd alf-#{sub} && BUNDLE_GEMFILE=Gemfile.ci bundle update"
+      end
+    end
+  end
+
+  desc "Run bundle-install on each submodule"
+  task :bundle do
+    SUB_MODULES.each do |sub|
+      Bundler.with_clean_env do
+        puts "Running bundle in #{sub}"
+        system "cd alf-#{sub} && bundle install"
+        system "cd alf-#{sub} && BUNDLE_GEMFILE=Gemfile.ci bundle install"
+      end
+    end
+  end
+
   desc "Test sub-modules"
   task :test do
     SUB_MODULES.each do |sub|
