@@ -7,7 +7,6 @@ namespace :mod do
     shell
     rack
     rest
-    test
   ]
 
   desc "Install all sub-modules"
