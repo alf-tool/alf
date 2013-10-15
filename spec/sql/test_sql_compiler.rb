@@ -27,15 +27,7 @@ module Alf
         next unless query['sql']
 
         describe "SQL compilation of '#{query}'" do
-          let(:expr){ @conn.parse(query['alf']) }
-
-          before(:each) do
-            @conn = db.connection
-          end
-
-          after(:each) do
-            @conn.close if @conn
-          end
+          let(:expr){ conn.parse(query['alf']) }
 
           it_should_behave_like "a SQL compiled"
 

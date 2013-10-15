@@ -4,26 +4,47 @@ require 'sap'
 
 ENV['DATABASE'] ||= 'postgres'
 
+FIXTURES_FOLDER = Path.backfind('fixtures')
+
+class Adapters
+
+  def fake
+    @fake ||= Alf.examples_adapter
+  end
+
+  def sqlite
+    @sqlite ||= begin
+      url = FIXTURES_FOLDER/"suppliers-and-parts/suppliers-and-parts.db"
+      Alf::Sequel::Adapter.sequel_db(url)
+    end
+  end
+
+  def postgres
+    @postgres ||= begin
+      url = "postgres://alf@localhost/suppliers_and_parts"
+      Alf::Sequel::Adapter.sequel_db(url)
+    end
+  end
+
+end
+ADAPTERS = Adapters.new
+
 module AlfIntegrationHelpers
-
-  FIXTURES_FOLDER = Path.backfind('fixtures')
-
-  DATABASE_ADAPTERS = {
-    "fake"     => Alf.examples_adapter,
-    "sqlite"   => FIXTURES_FOLDER/"suppliers-and-parts/suppliers-and-parts.db",
-    "postgres" => "postgres://alf@localhost/suppliers_and_parts"
-  }
 
   def fixtures_folder
     FIXTURES_FOLDER
   end
 
   def adapter
-    DATABASE_ADAPTERS[ENV['DATABASE']]
+    ADAPTERS.send ENV['DATABASE']
   end
 
   def db
     Alf::Database.new(adapter, viewpoint: Sap::Views[])
+  end
+
+  def conn
+    db.connection
   end
 
 end
