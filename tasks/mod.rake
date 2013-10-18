@@ -6,6 +6,7 @@ namespace :mod do
     sequel
     shell
     rack
+    doc
     rest
   ]
 
