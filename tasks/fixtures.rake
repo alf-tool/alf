@@ -40,7 +40,12 @@ namespace :fixtures do
         {:sid => 'S4', :pid => 'P4', :qty => 300},
         {:sid => 'S4', :pid => 'P5', :qty => 400}
       ])
-      puts conn.relvar(:supplies).heading
+      conn.relvar(:cities).affect([
+        {:city => 'London',   :country => 'England'},
+        {:city => 'Paris',    :country => 'France'},
+        {:city => 'Athens',   :country => 'Greece'},
+        {:city => 'Brussels', :country => 'Belgium'}
+      ])
     end
   end
 

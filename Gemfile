@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 group :runtime do
+  gem "alf",        path: "."
   gem "alf-core",   path: "./alf-core"
   gem "alf-sql",    path: "./alf-sql"
   gem "alf-shell",  path: "./alf-shell"

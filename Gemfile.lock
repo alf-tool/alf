@@ -1,4 +1,14 @@
 PATH
+  remote: .
+  specs:
+    alf (0.15.0)
+      alf-core (~> 0.15.0)
+      alf-rack (~> 0.15.0)
+      alf-sequel (~> 0.15.0)
+      alf-shell (~> 0.15.0)
+      alf-sql (~> 0.15.0)
+
+PATH
   remote: ./alf-core
   specs:
     alf-core (0.15.0)
@@ -69,6 +79,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  alf!
   alf-core!
   alf-rack!
   alf-sequel!
