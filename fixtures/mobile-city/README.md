@@ -36,27 +36,64 @@ In addition to those requirements, we add the following meta-requirements (i.e. 
 * The database interface should lead to a queryable (and complete) database schema. It should act transparently as if it was a base schema.
 * The database interface should abstract from the context, that it, it should present base relations without any reference to the context itself.
 
-## Ruuning the example
+## Example
 
 ```
 require 'mobile_city'
 
-# Take the viewpoint of Maria Delsol who is a child and speaks english
-viewpoint = MobileCity::Viewpoint[user_id: 'mdelsol']
+db = MobileCity.sqlite_database
+
+# Let first take the Native viewpoint. This is the base database, non
+# context-oriented.
+viewpoint = MobileCity::Viewpoint::Native
 
 # Connect to the database and send a few queries.
 MobileCity.sqlite_database.connect(viewpoint: viewpoint) do |conn|
+  puts conn.query{
+    pois
+  }
+  puts conn.query{
+    restrict(poi_images, poi: "brussels")
+  }
+end
 
+# The first query above `pois` returns all point of interest, and should
+# return something like:
+# +-----------+----------------+-----------+
+# | :id       | :name          | :sensible |
+# +-----------+----------------+-----------+
+# | brussels  | Brussels       | false     |
+# | manneken  | Manneken Pis   | false     |
+# | delirium  | Delirium Cafe  | true      |
+# | kites     | Kites shop     | false     |
+# | paris     | Paris          | false     |
+# | chocolate | Chocolate shop | false     |
+# +-----------+----------------+-----------+
+
+# Let now take the viewpoint of Maria Delsol who is a child and speaks english
+viewpoint = MobileCity::Viewpoint[user_id: 'mdelsol']
+
+# Let see how the same queries react now.
+MobileCity.sqlite_database.connect(viewpoint: viewpoint) do |conn|
   # Point of interests are correctly filtered according to the context.
   # Descriptions are inlined.
   puts conn.query{
     pois
   }
-
-  # You can use and query those relations as if they were base relations.
+  # Relations can be used in queries as usual.
   puts conn.query{
     restrict(poi_images, poi: "brussels")
   }
-
 end
+
+# The first query above abstracts from the context but meet the requirements:
+# Maria is a child => no sensible POI. All descriptions inlined an in english.
+# +-----------+----------------+-----------+---------------------+
+# | :id       | :name          | :sensible | :description        |
+# +-----------+----------------+-----------+---------------------+
+# | brussels  | Brussels       | false     | Brussels (the city) |
+# | chocolate | Chocolate shop | false     | Chocolate shop      |
+# | manneken  | Manneken Pis   | false     | Manneken Pis        |
+# | paris     | Paris          | false     | Paris (the city)    |
+# +-----------+----------------+-----------+---------------------+
 ```
