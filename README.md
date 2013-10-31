@@ -50,7 +50,7 @@ The consolidated gem is assembled from the following components:
 * [try-alf](http://github.com/alf-tool/try-alf) is the source code of try-alf.org
   itself.
 
-Those components are distributed as separated ruby gems as well. An typical
+Those components are distributed as separated ruby gems as well. A typical
 ruby configuration (Gemfile) for using Alf and connecting to SQL databases is
 either:
 
@@ -87,4 +87,4 @@ rake test
 
 Let me know if some tests fail in your environment. I'm not sure to know the
 idiomatic way to use github with submodules when clones are involved. If you
-do know, feel free to contribute your first pull request for this README ;-)
+do know, feel free to contribute your first pull request on this README ;-)
