@@ -1,15 +1,5 @@
 namespace :mod do
 
-  SUB_MODULES = %w[
-    core
-    sql
-    sequel
-    shell
-    rack
-    doc
-    rest
-  ]
-
   desc "Install all sub-modules"
   task :add do
     SUB_MODULES.each do |sub|
