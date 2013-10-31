@@ -4,3 +4,5 @@ pkg
 doc/api
 .yardoc
 .bundle
+Gemfile.lock
+Gemfile.ci.lock
