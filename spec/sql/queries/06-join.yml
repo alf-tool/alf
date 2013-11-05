@@ -205,3 +205,22 @@
 # joining from Relation::DEE
 - alf: |-
     join(Relation::DEE, suppliers)
+# joining with Relation::DEE
+- alf: |-
+    join(suppliers, Relation::DEE)
+# joining with Relation::DEE-like
+- alf: |-
+    join(suppliers, project(suppliers, []))
+  sql: |-
+    SELECT t1.sid, t1.name, t1.status, t1.city
+    FROM suppliers AS t1 WHERE EXISTS(
+      SELECT * FROM suppliers AS t2
+    )
+# joining from Relation::DEE-like
+- alf: |-
+    join(project(suppliers, []), suppliers)
+  sql: |-
+    SELECT t2.sid, t2.name, t2.status, t2.city
+    FROM suppliers AS t2 WHERE EXISTS(
+      SELECT * FROM suppliers AS t1
+    )
