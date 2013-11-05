@@ -125,7 +125,7 @@ Gem::Specification.new do |s|
   #
   s.add_development_dependency("rake", "~> 10.1")
   s.add_development_dependency("rspec", "~> 2.14")
-  s.add_dependency("alf-core", "~> 0.15.0")
+  s.add_dependency("alf-core", "~> 0.15.1")
   s.add_dependency("alf-sql", "~> 0.15.0")
   s.add_dependency("alf-sequel", "~> 0.15.0")
   s.add_dependency("alf-shell", "~> 0.15.0")
