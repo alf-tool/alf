@@ -7,6 +7,8 @@
 * Fixed compilation of shortcut operators involving complex expressions.
 * Fixed "comparison failure" errors in the presence of `nil`. You should NOT
   use `nil`, but robustness is probably necessary anyway.
+* Added the ability to load a .rash file through Path#load. Result is an array
+  of hashes.
 
 # 0.15.0 - 2013-11-01
 
