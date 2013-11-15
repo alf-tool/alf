@@ -22,3 +22,11 @@ group :release do
   gem "rake", "~> 10.1"
   gem "rspec", "~> 2.14"
 end
+
+group :devel do
+  gem "rack", "~> 1.5"
+  gem "rack-robustness", "~> 1.1"
+  gem "sinatra", "~> 1.4"
+  gem "wlang", "~> 2.2"
+  gem "sprockets", "~> 2.10"
+end

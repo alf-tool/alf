@@ -19,3 +19,6 @@
 [submodule "alf-doc"]
 	path = alf-doc
 	url = git://github.com/alf-tool/alf-doc.git
+[submodule "alf-repl"]
+	path = alf-repl
+	url = git://github.com/alf-tool/alf-repl.git

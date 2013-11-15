@@ -10,6 +10,8 @@ template-info:
       ignore: true
     spec/test___lower__.rb:
       ignore: true
+    Rakefile:
+      safe-override: false
 variables:
   lower:
     alf
@@ -34,5 +36,6 @@ variables:
     - {name: alf-sequel, version: "~> 0.15.0", groups: [runtime]}
     - {name: alf-shell,  version: "~> 0.15.0", groups: [runtime]}
     - {name: alf-rack,   version: "~> 0.15.0", groups: [runtime]}
+    - {name: alf-repl,   version: "~> 0.15.1", groups: [runtime]}
     - {name: rake,       version: "~> 10.1",   groups: [test, release]}
     - {name: rspec,      version: "~> 2.14",   groups: [test, release]}
