@@ -4,6 +4,8 @@ template-info:
   manifest:
     Gemfile:
       safe-override: false
+    Gemfile.ci:
+      safe-override: false
     tasks/spec_test.rake:
       ignore: true
     spec/spec_helper.rb:
@@ -18,7 +20,7 @@ variables:
   upper:
     Alf
   version:
-    0.15.1
+    0.16.0
   summary: |-
     Relational Algebra at your fingertips
   description: |-
@@ -31,11 +33,11 @@ variables:
     - http://rubygems.org/gems/alf
     - http://rubydoc.info/gems/alf
   dependencies:
-    - {name: alf-core,   version: "~> 0.15.1", groups: [runtime]}
-    - {name: alf-sql,    version: "~> 0.15.0", groups: [runtime]}
-    - {name: alf-sequel, version: "~> 0.15.0", groups: [runtime]}
-    - {name: alf-shell,  version: "~> 0.15.0", groups: [runtime]}
-    - {name: alf-rack,   version: "~> 0.15.0", groups: [runtime]}
-    - {name: alf-repl,   version: "~> 0.15.1", groups: [runtime]}
+    - {name: alf-core,   version: "~> 0.16.0", groups: [runtime]}
+    - {name: alf-sql,    version: "~> 0.16.0", groups: [runtime]}
+    - {name: alf-sequel, version: "~> 0.16.0", groups: [runtime]}
+    - {name: alf-shell,  version: "~> 0.16.0", groups: [runtime]}
+    - {name: alf-rack,   version: "~> 0.16.0", groups: [runtime]}
+    - {name: alf-repl,   version: "~> 0.16.0", groups: [runtime]}
     - {name: rake,       version: "~> 10.1",   groups: [test, release]}
     - {name: rspec,      version: "~> 2.14",   groups: [test, release]}
