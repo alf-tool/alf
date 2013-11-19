@@ -7,6 +7,7 @@ group :runtime do
   gem "alf-shell",  path: "./alf-shell"
   gem "alf-sequel", path: "./alf-sequel"
   gem "alf-rack",   path: "./alf-rack"
+  gem "alf-repl",   path: "./alf-repl"
 end
 
 group :test do

@@ -6,6 +6,7 @@ group :runtime do
   gem "alf-shell",  git: "git://github.com/alf-tool/alf-shell.git"
   gem "alf-sequel", git: "git://github.com/alf-tool/alf-sequel.git"
   gem "alf-rack",   git: "git://github.com/alf-tool/alf-rack.git"
+  gem "alf-repl",   git: "git://github.com/alf-tool/alf-repl.git"
 end
 
 group :test do
