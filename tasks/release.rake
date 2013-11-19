@@ -1,5 +1,20 @@
 namespace :release do
 
+  desc "Bump the version number"
+  task :bump, :to do |t, args|
+    require 'path'
+    raise "Missing version number" unless to = args[:to]
+    in_each_sub_module("bump to #{to}") do |sub|
+      noespec = Path("alf-#{sub}.noespec")
+      content = noespec.read.gsub(/^  version:\n    (.*?)\n/){|x|
+        "  version:\n    #{to}\n"
+      }
+      noespec.write(content)
+      system("noe go -s")
+      system("git commit -a -m 'Bump version to #{to}'")
+    end
+  end
+
   desc "Create all gems, including in sub-modules"
   task :gem do
     cmd = "rm -rf pkg && rake gem"

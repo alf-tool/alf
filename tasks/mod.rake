@@ -47,4 +47,18 @@ namespace :mod do
     end
   end
 
+  desc "Display 'git status' on each sub-module"
+  task :status do
+    in_each_sub_module("git status") do |sub|
+      system "git status"
+    end
+  end
+
+  desc "Display 'git diff' on each sub-module"
+  task :diff do
+    in_each_sub_module("git diff") do |sub|
+      system "git diff"
+    end
+  end
+
 end

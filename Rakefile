@@ -7,6 +7,7 @@ SUB_MODULES = %w[
   sequel
   shell
   rack
+  repl
   doc
   rest
 ]
