@@ -15,6 +15,35 @@ namespace :release do
     end
   end
 
+  desc "Set the CHANGELOG 'FIX ME' to the current date"
+  task :stamp do
+    require 'time'
+    require 'path'
+    require 'alf/version'
+    date = Time.now.strftime("%Y-%m-%d")
+    version = Alf::VERSION
+    cmd = "git commit -a -m 'Releasing #{version}'"
+    doit = ->{
+      clog = Path('CHANGELOG.md')
+      clog.write clog.read.gsub(/FIX ME/, date)
+      system(cmd)
+    }
+    in_each_sub_module("stamping CHANGELOG in") do |sub|
+      doit()
+    end
+    doit()
+  end
+
+  desc "Tag the version and push everything"
+  task :tag => :stamp do
+    require 'alf/version'
+    version = Alf::VERSION
+    cmd = "git tag v#{version} && git push origin master --tags"
+    in_each_sub_module("'git tag and push' in") do |sub|
+      system(cmd)
+    end
+  end
+
   desc "Create all gems, including in sub-modules"
   task :gem do
     cmd = "rm -rf pkg && rake gem"
@@ -37,7 +66,7 @@ namespace :release do
   task :go => :gem do
     require 'alf/version'
     version = Alf::VERSION
-    cmd = "gem push pkg/*.gem && git tag v#{version} && git push origin --tags"
+    cmd = "gem push pkg/*.gem && git tag v#{version} && git push origin master --tags"
     in_each_sub_module("'gem push & git tag' in") do |sub|
       system(cmd)
     end
