@@ -1,5 +1,7 @@
 # 0.15.1 - FIX ME
 
+* Fixed SQL generation when projecting over set operators (minus, union,
+  intersection)
 * Fixed Tuple() that now accepts no arg and returns an empty tuple.
 * Fixed SQL compilation of join with DEE/DUM.
 * Removed `is_table_dee` attribute when projecting all attributes away from
@@ -9,6 +11,7 @@
   use `nil`, but robustness is probably necessary anyway.
 * Added the ability to load a .rash file through Path#load. Result is an array
   of hashes.
+* Fixed default signature of Hierarchize.
 
 # 0.15.0 - 2013-11-01
 
