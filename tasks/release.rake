@@ -62,16 +62,17 @@ namespace :release do
     system(cmd)
   end
 
-  desc "Release it!"
-  task :go => :gem do
-    require 'alf/version'
-    version = Alf::VERSION
+  desc "Push the release just done!"
+  task :push do
     cmd = "gem push pkg/*.gem"
-    in_each_sub_module("'gem push & git tag' in") do |sub|
+    in_each_sub_module("'gem push in") do |sub|
       system(cmd)
     end
     system(cmd)
   end
+
+  desc "Release it!"
+  task :go => [:tag, :gem, :push]
 
 end
 desc "Release alf"
