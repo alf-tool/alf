@@ -66,7 +66,7 @@ namespace :release do
   task :go => :gem do
     require 'alf/version'
     version = Alf::VERSION
-    cmd = "gem push pkg/*.gem && git tag v#{version} && git push origin master --tags"
+    cmd = "gem push pkg/*.gem"
     in_each_sub_module("'gem push & git tag' in") do |sub|
       system(cmd)
     end
