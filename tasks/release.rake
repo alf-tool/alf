@@ -45,7 +45,7 @@ namespace :release do
   end
 
   desc "Create all gems, including in sub-modules"
-  task :gem do
+  task :gem => :doc do
     cmd = "rm -rf pkg && rake gem"
     in_each_sub_module("'rake gem' in") do |sub|
       system(cmd)
