@@ -46,3 +46,21 @@
     WHERE EXISTS(
       SELECT TRUE AS is_table_dee
         WHERE EXISTS(SELECT * FROM suppliers AS t1))
+# projection of minus
+- alf: |-
+    project(minus(suppliers, suppliers_in_london), [:sid])
+  sql: |-
+    WITH t3 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city FROM suppliers AS t1)
+      EXCEPT
+      (SELECT t2.sid, t2.name, t2.status, t2.city FROM suppliers AS t2 WHERE t2.city = 'London')
+    ) SELECT t3.sid FROM t3 AS t3
+# empty projection of of minus
+- alf: |-
+    project(minus(suppliers, suppliers_in_london), [])
+  sql: |-
+    WITH t3 AS (
+      (SELECT t1.sid, t1.name, t1.status, t1.city FROM suppliers AS t1)
+      EXCEPT
+      (SELECT t2.sid, t2.name, t2.status, t2.city FROM suppliers AS t2 WHERE t2.city = 'London')
+    ) SELECT TRUE AS is_table_dee WHERE EXISTS(SELECT * FROM t3 AS t3)

@@ -7,3 +7,10 @@
     in Paris and in London, the minus simply returns the left operand. In
     contrast, if we project first then the city information is lost and we
     could restrict the left operand through common names, which is wrong.
+- alf: |-
+    project(minus(suppliers, suppliers_in_paris), [])
+  optimized: |-
+    project(minus(suppliers, suppliers_in_paris), [])
+  comment: |-
+    This is NOT minus(project, project), cfr. counterexample provided by Kim
+    Mens project/master thesis at UCL.
