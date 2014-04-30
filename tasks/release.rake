@@ -4,15 +4,26 @@ namespace :release do
   task :bump, :to do |t, args|
     require 'path'
     raise "Missing version number" unless to = args[:to]
-    in_each_sub_module("bump to #{to}") do |sub|
-      noespec = Path("alf-#{sub}.noespec")
+    doit = ->(sub){
+      # rewrite noespec
+      noespec = Path("alf#{sub}.noespec")
       content = noespec.read.gsub(/^  version:\n    (.*?)\n/){|x|
         "  version:\n    #{to}\n"
       }
       noespec.write(content)
       system("noe go -s")
+
+      # add a line to CHANGELOG.md
+      clog = Path('CHANGELOG.md')
+      clog.write("# #{to} - FIX ME\n\n* No change in this submodule.\n\n" + clog.read)
+
+      # git commit now.
       system("git commit -a -m 'Bump version to #{to}'")
+    }
+    in_each_sub_module("bump to #{to}") do |sub|
+      doit.call("-"+sub)
     end
+    doit.call("")
   end
 
   desc "Set the CHANGELOG 'FIX ME' to the current date"
