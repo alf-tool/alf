@@ -1,3 +1,7 @@
+# 0.16.1 - 2014-04-30
+
+* Fix a SQL compilation bug when compiling intersect(union).
+
 # 0.16.0 - 2014-02-18
 
 * Fixed SQL compilation when projecting over set operators (minus, union,
