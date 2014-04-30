@@ -20,7 +20,7 @@ variables:
   upper:
     Alf
   version:
-    0.16.1
+    0.16.2
   summary: |-
     Relational Algebra at your fingertips
   description: |-
