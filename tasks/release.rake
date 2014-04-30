@@ -29,9 +29,9 @@ namespace :release do
       system(cmd)
     }
     in_each_sub_module("stamping CHANGELOG in") do |sub|
-      doit()
+      doit.call
     end
-    doit()
+    doit.call
   end
 
   desc "Tag the version and push everything"
