@@ -73,7 +73,7 @@ namespace :release do
   end
 
   desc "Release it!"
-  task :go => [:tag, :gem, :push]
+  task :go => [:stamp, :tag, :gem, :push]
 
 end
 desc "Release alf"
