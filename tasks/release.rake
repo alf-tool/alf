@@ -42,6 +42,7 @@ namespace :release do
     in_each_sub_module("'git tag and push' in") do |sub|
       system(cmd)
     end
+    system(cmd)
   end
 
   desc "Create all gems, including in sub-modules"
