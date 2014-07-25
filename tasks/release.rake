@@ -49,7 +49,7 @@ namespace :release do
   task :tag => :stamp do
     require 'alf/version'
     version = Alf::VERSION
-    cmd = "git tag v#{version} && git push origin master --tags"
+    cmd = "git tag --force v#{version} && git push origin master --tags"
     in_each_sub_module("'git tag and push' in") do |sub|
       system(cmd)
     end
