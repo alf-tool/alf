@@ -61,6 +61,13 @@ namespace :mod do
     end
   end
 
+  desc "Run 'git reset --hard origin/master' on each sub-module"
+  task :'reset-hard-master' do
+    in_each_sub_module("git reset --hard origin/master") do |sub|
+      system "git reset --hard origin/master"
+    end
+  end
+
   desc "Display 'git diff' on each sub-module"
   task :diff do
     in_each_sub_module("git diff") do |sub|
