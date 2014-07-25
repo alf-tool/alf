@@ -24,6 +24,13 @@ namespace :mod do
     end
   end
 
+  desc "Run `noe go -s` on each submodule"
+  task :noe do
+    in_each_sub_module("'noe go -s' in") do |sub|
+      system "noe go -s"
+    end
+  end
+
   desc "Run bundle-update on each submodule"
   task :"bundle-update" do
     in_each_sub_module("'bundle update' in") do |sub|
