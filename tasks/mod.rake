@@ -82,4 +82,11 @@ namespace :mod do
     end
   end
 
+  desc "Run `git commit -a -m '...'` on each submodule"
+  task :commit, :message do |t, args|
+    in_each_sub_module("'git commit -a -m ...' in") do |sub|
+      system "git commit -a -m \"#{args[:message]}\""
+    end
+  end
+
 end
