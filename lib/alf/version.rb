@@ -2,8 +2,8 @@ module Alf
   module Version
 
     MAJOR = 0
-    MINOR = 16
-    TINY  = 3
+    MINOR = 17
+    TINY  = 0
 
     def self.to_s
       [ MAJOR, MINOR, TINY ].join('.')

@@ -20,7 +20,7 @@ variables:
   upper:
     Alf
   version:
-    0.16.3
+    0.17.0
   summary: |-
     Relational Algebra at your fingertips
   description: |-
@@ -33,11 +33,11 @@ variables:
     - http://rubygems.org/gems/alf
     - http://rubydoc.info/gems/alf
   dependencies:
-    - {name: alf-core,   version: "~> 0.16",  groups: [runtime]}
-    - {name: alf-sql,    version: "~> 0.16",  groups: [runtime]}
-    - {name: alf-sequel, version: "~> 0.16",  groups: [runtime]}
-    - {name: alf-shell,  version: "~> 0.16",  groups: [runtime]}
-    - {name: alf-rack,   version: "~> 0.16",  groups: [runtime]}
-    - {name: alf-repl,   version: "~> 0.16",  groups: [runtime]}
+    - {name: alf-core,   version: "~> 0.17",  groups: [runtime]}
+    - {name: alf-sql,    version: "~> 0.17",  groups: [runtime]}
+    - {name: alf-sequel, version: "~> 0.17",  groups: [runtime]}
+    - {name: alf-shell,  version: "~> 0.17",  groups: [runtime]}
+    - {name: alf-rack,   version: "~> 0.17",  groups: [runtime]}
+    - {name: alf-repl,   version: "~> 0.17",  groups: [runtime]}
     - {name: rake,       version: "~> 10.1",  groups: [test, release]}
     - {name: rspec,      version: "~> 2.14",  groups: [test, release]}
